@@ -40,6 +40,6 @@ jobs:
           SECRET_ACCESS_KEY: oXwnZRG9c4k1vtwvOUyMwcbOnCJcHz9Qf+RYHNSK
           AWS_EC2_METADATA_DISABLED: true
         run: |
-          aws configure set aws_access_key_id AKIA3EQRIY757QAU2EG7
-          aws configure set aws_secret_access_key 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
+          aws configure set aws_access_key_id ${ ACCESS_KEY_ID }
+          aws configure set aws_secret_access_key ${ SECRET_ACCESS_KEY }
           aws sts get-caller-identity
