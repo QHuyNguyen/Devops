@@ -39,6 +39,6 @@ jobs:
       # Runs a set of commands using the runners shell
       - name: Access AWS account
         run: |
-          aws configure set aws_access_key_id $ACCESS_KEY_ID
-          aws configure set aws_secret_access_key $SECRET_ACCESS_KEY
+          aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ SECRET_ACCESS_KEY }}
           aws sts get-caller-identity
