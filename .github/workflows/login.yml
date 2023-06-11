@@ -38,7 +38,7 @@ jobs:
         env:
           ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
           SECRET_ACCESS_KEY: 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
-          AWS_EC2_METADATA_DISABLED: true
+          #AWS_EC2_METADATA_DISABLED: true
         run: |
           aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
