@@ -20,12 +20,8 @@ on:
 jobs:
   # This workflow contains a single job called "setup"
   setup:
-    # access key for devops aws
-    env:
-      ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
-      SECRET_ACCESS_KEY: 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
     # The type of runner that the job will run on
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
@@ -38,6 +34,11 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Access AWS account
+        # access key for devops aws
+        env:
+          ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
+          SECRET_ACCESS_KEY: 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
+          AWS_EC2_METADATA_DISABLED: true
         run: |
           aws configure set aws_access_key_id AKIA3EQRIY757QAU2EG7
           aws configure set aws_secret_access_key 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
