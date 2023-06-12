@@ -36,6 +36,7 @@ jobs:
 
       - name: Run a terraform plan for this repo
         run: |
+          cd ../aws-organization
           terraform init
           terraform plan
 
