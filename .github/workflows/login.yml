@@ -36,5 +36,6 @@ jobs:
 
       - name: Run a terraform plan for this repo
         run: |
+          terraform init
           terraform plan
 
