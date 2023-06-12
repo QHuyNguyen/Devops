@@ -39,8 +39,6 @@ jobs:
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
-      
-      - name: Get terraform plan output
 
   terraform-plan:
     runs-on: ubuntu-latest
@@ -64,7 +62,7 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform plan
       
-      - name: Get terraform plan output
+      #- name: Get terraform plan output
     
   #terraform-apply:
   #  runs-on: ubuntu-latest
