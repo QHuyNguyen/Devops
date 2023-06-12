@@ -18,7 +18,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  terraform-init:
+  terraform-init-plan-apply:
     runs-on: ubuntu-latest
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
@@ -39,51 +39,5 @@ jobs:
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
-
-  terraform-plan:
-    runs-on: ubuntu-latest
-    env:
-      ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
-      SECRET_ACCESS_KEY: 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
-      AWS_EC2_METADATA_DISABLED: true
-      TERRAFORM_ROOT_MODULE: aws-organization
-    steps:
-      - name: Checkout the current repo
-        uses: actions/checkout@v3
-
-      - name: Access AWS Devops Account
-        run: |
-          aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
-          aws sts get-caller-identity
-
-      - name: Run a terraform plan for this repo
-        run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform plan
-      
-      #- name: Get terraform plan output
-    
-  #terraform-apply:
-  #  runs-on: ubuntu-latest
-  #  env:
-  #    ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
-  #    SECRET_ACCESS_KEY: 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
-  #    AWS_EC2_METADATA_DISABLED: true
-  #    TERRAFORM_ROOT_MODULE: aws-organization
-  #  steps:
-  #    - name: Checkout the current repo
-  #      uses: actions/checkout@v3
-#
-  #    - name: Access AWS Devops Account
-  #      run: |
-  #        aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
-  #        aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
-  #        aws sts get-caller-identity
-#
-  #    - name: Run a terraform plan for this repo
-  #      run: |
-  #        cd ${{ env.TERRAFORM_ROOT_MODULE }}
-  #        terraform apply
-#
-#
+          terraform apply
