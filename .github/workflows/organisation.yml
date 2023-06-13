@@ -40,7 +40,8 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
           terraform plan
-          terraform apply --auto-approve
+          terraform destroy
+        #  terraform apply --auto-approve
 
   #resource-init-plan-apply:
   #  runs-on: ubuntu-latest
