@@ -42,10 +42,9 @@ jobs:
 #          terraform plan
 #          terraform apply --auto-approve
       
-#      - name: Terraform Plan
-#        working-directory: ./aws-organization
-#        run: |
-#          terraform plan -out tf.plan
+      - name: Terraform Plan
+        run: |
+          terraform plan -out tf.plan
 #
 #      - name: Terraform apply
 #        working-directory: ./aws-organization
