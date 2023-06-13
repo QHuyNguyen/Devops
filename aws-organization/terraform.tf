@@ -6,6 +6,11 @@ terraform {
     }
   }
 
+  backend "s3" {
+    bucket                  = "arthur-tf-state-bucket"
+    key                     = "my-terraform-project"
+    region                  = "ap-southeast-2"
+  }
 }
 
 # Configure the AWS Provider
