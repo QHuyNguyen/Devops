@@ -40,7 +40,7 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
           terraform plan
-          terraform destroy
+          terraform destroy --auto-approve
         #  terraform apply --auto-approve
 
   #resource-init-plan-apply:
