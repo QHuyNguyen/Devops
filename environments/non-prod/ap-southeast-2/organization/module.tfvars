@@ -1,1 +1,1 @@
-name = "arthurlol"
+ou_name = "arthurlol"
