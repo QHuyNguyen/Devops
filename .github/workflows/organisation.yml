@@ -35,13 +35,12 @@ jobs:
           aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
           aws sts get-caller-identity
 
-      - name: Run a terraform init + plan for organisation module
+      - name: Run a terraform init + plan + apply for organisation module
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
           terraform plan
-          terraform destroy --auto-approve
-        #  terraform apply --auto-approve
+          terraform apply --auto-approve
 
   #resource-init-plan-apply:
   #  runs-on: ubuntu-latest
