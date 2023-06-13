@@ -1,1 +1,0 @@
-ou_name = "arthurlol"
