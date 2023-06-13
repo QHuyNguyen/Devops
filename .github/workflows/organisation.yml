@@ -36,19 +36,16 @@ jobs:
           aws sts get-caller-identity
 
       - name: Terraform Init
-        working-directory: ../aws-organization
         run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
       
       - name: Terraform Plan
-        working-directory: ../aws-organization
         run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform plan -out tf.plan
 
       - name: Terraform apply
-        working-directory: ../aws-organization
         run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform apply tf.plan --auto-approve
