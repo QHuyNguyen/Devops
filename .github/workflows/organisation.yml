@@ -24,7 +24,7 @@ jobs:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
       AWS_EC2_METADATA_DISABLED: true
-    #  TERRAFORM_ROOT_MODULE: aws-organization
+      TERRAFORM_ROOT_MODULE: aws-organization
     steps:
       - name: Checkout the current repo
         uses: actions/checkout@v3
@@ -38,7 +38,7 @@ jobs:
       - name: Terraform Init
         working-directory: ./aws-organization
         run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
 #          terraform plan
 #          terraform apply --auto-approve
