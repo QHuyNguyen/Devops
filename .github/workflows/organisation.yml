@@ -24,7 +24,7 @@ jobs:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
       AWS_EC2_METADATA_DISABLED: true
-      TERRAFORM_ROOT_MODULE: aws-organization
+    #  TERRAFORM_ROOT_MODULE: aws-organization
     steps:
       - name: Checkout the current repo
         uses: actions/checkout@v3
@@ -35,12 +35,23 @@ jobs:
           aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
           aws sts get-caller-identity
 
-      - name: Run a terraform init + plan + apply for organisation module
+      - name: Terraform Init
+        working-directory: ./aws-organization
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
-          terraform plan
-          terraform apply --auto-approve
+#          terraform plan
+#          terraform apply --auto-approve
+      
+      - name: Terraform Plan
+        working-directory: ./aws-organization
+        run: |
+          terraform plan -out tf.plan
+
+      - name: Terraform apply
+        working-directory: ./aws-organization
+        run: |
+          terraform apply tf.plan --auto-approve
 
   #resource-init-plan-apply:
   #  runs-on: ubuntu-latest
