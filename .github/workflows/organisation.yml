@@ -48,4 +48,4 @@ jobs:
       - name: Terraform apply
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform apply tf.plan --auto-approve
+          terraform apply -input=false tf.plan
