@@ -41,7 +41,7 @@ jobs:
           terraform init
           terraform plan -var-file="module.tfvars"
           terraform show
-          terraform plan --auto-approve
+          terraform apply --auto-approve
       
 #      - name: Terraform Plan
 #        run: |
