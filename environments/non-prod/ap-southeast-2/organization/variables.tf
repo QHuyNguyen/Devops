@@ -1,3 +1,3 @@
-variable "name" {
+variable "random_name" {
   type = string
 }
