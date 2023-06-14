@@ -38,9 +38,13 @@ jobs:
       - name: Terraform Init
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          echo "**init**"
           terraform init
+          echo "**plan**"
           terraform plan -var-file="module.tfvars"
+          echo "**show**"
           terraform show
+          echo "**apply**"
           terraform apply --auto-approve
       
 #      - name: Terraform Plan

@@ -1,4 +1,4 @@
 module "organization" {
     source = "../../../../modules/aws-organization"
-    ou_name      = "cunt"
+    ou_name      = "bitch"
 }
