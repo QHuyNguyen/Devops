@@ -44,6 +44,11 @@ jobs:
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform plan -var-file="module.tfvars" -out tf.plan
+      
+      - name: Terraform Show
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform show
 
       - name: Terraform apply
         run: |
