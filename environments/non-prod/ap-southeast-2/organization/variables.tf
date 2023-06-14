@@ -1,3 +1,3 @@
-variable "random_name" {
+variable "ou_name" {
   type = string
 }

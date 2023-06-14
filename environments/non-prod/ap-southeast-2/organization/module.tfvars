@@ -1,1 +1,1 @@
-random_name = "cunt"
+ou_name = "cunt"

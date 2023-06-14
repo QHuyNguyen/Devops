@@ -1,4 +1,4 @@
 module "organization" {
     source = "../../../../modules/aws-organization"
-    ou_name      = var.random_name
+    ou_name      = var.ou_name
 }
