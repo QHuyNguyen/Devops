@@ -1,1 +1,1 @@
-ou_name = "cunt"
+ou_name = "non-prod"
