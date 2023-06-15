@@ -63,3 +63,41 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform apply -var-file="module.tfvars" --auto-approve
 #          terraform apply -input=false tf.plan
+
+  s3-bucket-init-plan-apply:
+    runs-on: ubuntu-latest
+    env:
+      ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
+      SECRET_ACCESS_KEY: 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
+      AWS_EC2_METADATA_DISABLED: true
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
+    steps:
+      - name: Checkout the current repo
+        uses: actions/checkout@v3
+
+      - name: Access AWS Devops Account
+        run: |
+          aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
+          aws sts get-caller-identity
+
+      - name: Terraform Init
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          echo "**init**"
+          terraform init
+      
+      - name: Terraform Plan
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform plan -var-file="module.tfvars"
+      
+      - name: Terraform Show
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform show
+
+      - name: Terraform apply
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform apply -var-file="module.tfvars" --auto-approve
