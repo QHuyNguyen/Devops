@@ -45,7 +45,7 @@ jobs:
           echo "**show**"
           terraform show
           echo "**apply**"
-          terraform apply --auto-approve
+          terraform apply -var-file="module.tfvars" --auto-approve
       
 #      - name: Terraform Plan
 #        run: |
