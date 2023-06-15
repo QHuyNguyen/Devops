@@ -47,15 +47,15 @@ jobs:
           echo "**apply**"
           terraform apply -var-file="module.tfvars" --auto-approve
       
-#      - name: Terraform Plan
-#        run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-#          terraform plan -var-file="module.tfvars" -out tf.plan
-#      
-#      - name: Terraform Show
-#        run: |
-#          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-#          terraform show
+      - name: Terraform Plan
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform plan -var-file="module.tfvars" -out tf.plan
+      
+      - name: Terraform Show
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform show
 #
 #      - name: Terraform apply
 #        run: |
