@@ -1,1 +1,1 @@
-ou_name = "non-prod"
+ou_name = "non-prod-test"
