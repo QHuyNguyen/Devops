@@ -56,11 +56,12 @@ jobs:
       - name: Terraform Show
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform show
+          terraform showsadfs
 
   organisation-apply:
     runs-on: ubuntu-latest
     environment: production
+    needs: organisation-plan
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
