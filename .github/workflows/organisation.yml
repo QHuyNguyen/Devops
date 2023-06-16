@@ -56,7 +56,7 @@ jobs:
       - name: Terraform Show
         run: |
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform showsadfs
+          terraform show
 
   organisation-apply:
     runs-on: ubuntu-latest
