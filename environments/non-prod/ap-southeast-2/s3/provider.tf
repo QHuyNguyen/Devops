@@ -6,11 +6,11 @@ terraform {
     }
   }
 
-  #backend "s3" {
-  #  bucket = "arthur-tf-state-bucket"
-  #  key    = "s3/bucket-terraform.tfstate"
-  #  region = "ap-southeast-2"
-  #}
+  backend "s3" {
+    bucket = "arthur-cmd-state-file-bucket"
+    key    = "s3/bucket-terraform.tfstate"
+    region = "ap-southeast-2"
+  }
 }
 
 provider "aws" {
