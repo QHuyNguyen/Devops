@@ -20,6 +20,7 @@ on:
 jobs:
   organisation-plan:
     runs-on: ubuntu-latest
+    environment: production
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
@@ -60,7 +61,9 @@ jobs:
 
   organisation-apply:
     runs-on: ubuntu-latest
+    #Set environment to require repo admin to approve before running
     environment: production
+    #Set dependency for this job
     needs: organisation-plan
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
@@ -91,6 +94,7 @@ jobs:
 
   s3-bucket-init-plan-apply:
     runs-on: ubuntu-latest
+    environment: production
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
