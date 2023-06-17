@@ -44,9 +44,10 @@ jobs:
 
       - name: Terraform Init
         run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          ls -la
-          echo "**init**"
           terraform init
       
       - name: Terraform Plan
