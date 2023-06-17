@@ -19,15 +19,15 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  setup:
+  ec2-instance-plan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
     env:
-      ACCESS_KEY_ID: ASIA2QIXXJAZHU4F23PP
-      SECRET_ACCESS_KEY: /F3x1+BXmKPNqGMI09CKF5mJmKIXzUpjqIvsHOqr
-      AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEP///////////wEaDmFwLXNvdXRoZWFzdC0yIkcwRQIgNfi3OHLcVDCkb0PO1KXbPQvhGpra4e2k5tdKlpw0LnQCIQCvkzoyh4sqZ+ltToHFIyhksB5lm2Ux/VNcVqxOQzjMhyqOAwhYEAMaDDcyMjE0MTEzNjk0NiIMb5uCJawneR09iVECKusCI8q3tRK7rbQBsydaLAOKxFGqcDyYsXDOqeZAjJqfpzMJCWY2398aGUB8Jp8ymSwbrpRti9c8wpR48HHp1Z77OfdvKqfuGhnGRKS7XsPuLRgCJNUjnt/gxULmVowR9oz6DNd1uKsf+6EcWV46zSL9GKJNgyUL18nu85rGwz3/EpiQ9CaYCHA918VbaTqhpV8GNW8wtL4bbs3w7Ymk9BO7aUwG4tdCFmzajK6i+LESLeVJQOQDllD9H4cZdthQsOUtk+f/33Q/vxGWzZshX8TE+HF47Q/T5ClfFf+OQ7rvS5qjnzRv+GYXB34SckkPSN8pDi+T02bgopU7cZ1Ij9M5EXa5uFR0hkHir7LpGdRmfDVdyvCK4dQLh9jUrPCXXa5dKrY2gjtf8JR9tXA9ubTTb5m1tlUgmXtsb04uwShJQL8SucupBz1s+WI42XG3DZHQT9lXIWij+ZxGFNwhblXCGfia7BAQcklWEZ6eMMentaQGOqYBktjWqLZWP+wmh5I/nzHaBN6j+Yk1h2q7obLZgOuDhZ6yK97AhWBdtSYF8sa3ez8Dr021eqySZmlPRBffxiy0DgX7GMAkRfKLccHn6Nbxtd8JKODNzuP+DOMOOw1/CK3XVNXgGvQ+DYAzex5lHTtQMi0h8NLk37k1lAUP451otpOuGSVgFknjqkxdpJGgbNRUxwHqISrDc+YYD+snDwRKV4bqEG6RbA==
+      ACCESS_KEY_ID: ASIA2QIXXJAZDDI6R55Y
+      SECRET_ACCESS_KEY: ZohQl4IugYkWW6XJfp/JjNlxgIZEzxU5QwMIvD/u
+      AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEAEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAKuyGVxoIqxAvKsX0S8gvhoGHvp9ZHqsk92I6FLz+jV9AiBFn/7LbjQ/Oui5cS2dQJcJMJuvrEqgJ5cyCN8v/Fn3ZSqOAwhaEAMaDDcyMjE0MTEzNjk0NiIMGpXnDSJyJCUfHGgGKusCnceiednVfDxZpjoqIqzSXfvYj83vVHX2f+fSxhl/yOaIMB/ItndHwSPaF6S2oDtqe9vH6FqAKu19C8pjp6PEKUgCDVCruJ9UV8cpA3qZw1siyvfgzXum5fZ0XXT90O5GvTncq/aSnvTHWOToiR6e0Q6K0VRK3tZsGUluqdxSFJS80jW6eyAs00GzH3uN7TO8g3wpvvvlE0F3U3pg+iE3n+qrUbhINL1arKPCxXLy12fna9iCeufe6pd+rk3fDkJWhbwevHqFmxoQbgbfgfgsv1i9lYtEhfmIPqUs+iKUoNsN5sm3BDT6/Wc5dwWJefz1ZkwqMtks5Vhy4CYq8ef3MEjFuOiAUDCwBupj8jR/cJR3br+ONurF9lzhPfWMkmWUd7gEArXxTYXEh2WfyRZpoCbJHLa49KmA+NDCt3Pj7qpdP1WBVeoH2Jhj12CadKNwvOUBaZ2Y3JfQ6Ug+iLACo7Kr1Etz/bSXEEIZMIXxtaQGOqYBEF0Pq+/g5CIUe3KcdCqAoE2QJxNS35UKLjyneKh3sUEilgeIBXtND3XCZGxz2doawAYqwGZ3Dbb/5ULx5B79ayVkrTod8c28KMGzR3hhDlO492rmf5q8WUq5cX6pGfIUs5aJq+vtI31CaY7g0QjYWFvAUH9EBsy7nM+rkzxtdTIh8gZIoQauXDUeutObY/iJ6ELJlU5wlMrXuaBEQkn2PG4T+bWJmA==
       AWS_EC2_METADATA_DISABLED: true
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
