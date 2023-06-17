@@ -49,7 +49,7 @@ jobs:
 
       - name: Terraform Init
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd environments/non-prod/ap-southeast-2/s3
           ls -la
           echo "**init**"
           terraform init

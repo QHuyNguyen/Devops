@@ -94,6 +94,7 @@ jobs:
 
   s3-bucket-init-plan-apply:
     runs-on: ubuntu-latest
+    environment: production
     env:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
