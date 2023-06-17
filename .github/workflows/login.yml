@@ -49,23 +49,23 @@ jobs:
 
       - name: Terraform Init
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ../../environments/non-prod/ap-southeast-2/s3/
           echo "**init**"
           terraform init
       
       - name: Terraform Plan
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ../../environments/non-prod/ap-southeast-2/s3/
           terraform plan -var-file="module.tfvars"
       
       - name: Terraform Show
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ../../environments/non-prod/ap-southeast-2/s3/
           terraform show
 
       - name: Terraform apply
         run: |
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          cd ../../environments/non-prod/ap-southeast-2/s3/
           terraform apply -var-file="module.tfvars" --auto-approve
 
 #          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
