@@ -2,7 +2,7 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "3.74.2"
+      version = "~> 4.0"
     }
   }
 
@@ -14,7 +14,5 @@ terraform {
 }
 
 provider "aws" {
-  profile = "default"
   region = "ap-southeast-2"
-  shared_credentials_file = "~/.aws/config"
 }

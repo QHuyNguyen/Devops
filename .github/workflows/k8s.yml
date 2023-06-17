@@ -1,0 +1,74 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Arthur AWS Kubernetes
+
+run-name: Run Terraform plan/apply on k8s resources
+
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "setup"
+  setup:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      ACCESS_KEY_ID: ASIA2QIXXJAZHU4F23PP
+      SECRET_ACCESS_KEY: /F3x1+BXmKPNqGMI09CKF5mJmKIXzUpjqIvsHOqr
+      AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEP///////////wEaDmFwLXNvdXRoZWFzdC0yIkcwRQIgNfi3OHLcVDCkb0PO1KXbPQvhGpra4e2k5tdKlpw0LnQCIQCvkzoyh4sqZ+ltToHFIyhksB5lm2Ux/VNcVqxOQzjMhyqOAwhYEAMaDDcyMjE0MTEzNjk0NiIMb5uCJawneR09iVECKusCI8q3tRK7rbQBsydaLAOKxFGqcDyYsXDOqeZAjJqfpzMJCWY2398aGUB8Jp8ymSwbrpRti9c8wpR48HHp1Z77OfdvKqfuGhnGRKS7XsPuLRgCJNUjnt/gxULmVowR9oz6DNd1uKsf+6EcWV46zSL9GKJNgyUL18nu85rGwz3/EpiQ9CaYCHA918VbaTqhpV8GNW8wtL4bbs3w7Ymk9BO7aUwG4tdCFmzajK6i+LESLeVJQOQDllD9H4cZdthQsOUtk+f/33Q/vxGWzZshX8TE+HF47Q/T5ClfFf+OQ7rvS5qjnzRv+GYXB34SckkPSN8pDi+T02bgopU7cZ1Ij9M5EXa5uFR0hkHir7LpGdRmfDVdyvCK4dQLh9jUrPCXXa5dKrY2gjtf8JR9tXA9ubTTb5m1tlUgmXtsb04uwShJQL8SucupBz1s+WI42XG3DZHQT9lXIWij+ZxGFNwhblXCGfia7BAQcklWEZ6eMMentaQGOqYBktjWqLZWP+wmh5I/nzHaBN6j+Yk1h2q7obLZgOuDhZ6yK97AhWBdtSYF8sa3ez8Dr021eqySZmlPRBffxiy0DgX7GMAkRfKLccHn6Nbxtd8JKODNzuP+DOMOOw1/CK3XVNXgGvQ+DYAzex5lHTtQMi0h8NLk37k1lAUP451otpOuGSVgFknjqkxdpJGgbNRUxwHqISrDc+YYD+snDwRKV4bqEG6RbA==
+      AWS_EC2_METADATA_DISABLED: true
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Access AWS account
+        # access key for devops aws
+        run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
+          aws sts get-caller-identity
+
+      - name: Terraform Init
+        run: |
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          ls -la
+          echo "**init**"
+          terraform init
+      
+      - name: Terraform Plan
+        run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform plan -var-file="module.tfvars"
+      
+      - name: Terraform Show
+        run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform show
+
+      - name: Terraform apply
+        run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
+          cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          terraform apply -var-file="module.tfvars" --auto-approve
