@@ -1,4 +1,4 @@
-data "aws_subnet_ids" "selected_subnet" {
+data "aws_subnet" "selected_subnet" {
   id = var.subnet_id
 }
 
