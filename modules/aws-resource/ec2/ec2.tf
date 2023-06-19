@@ -1,7 +1,7 @@
 data "aws_subnets" "k8s_subnet" {
   filter {
-    name   = "k8s-vpc"
-    values = ["k8s-vpc"]
+    name   = "k8s-vpc-subnet-A"
+    values = ["k8s-vpc-subnet-A"]
   }
 }
 
