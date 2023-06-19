@@ -4,5 +4,6 @@ resource "aws_vpc" "k8s_vpc" {
 
   tags = {
     Name = var.vpc_name
+    Owner = var.owner
   }
 }

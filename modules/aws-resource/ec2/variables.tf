@@ -5,3 +5,7 @@ variable "instance_type" {
 variable "name" {
   type = string
 }
+
+variable "owner" {
+  type = string
+}

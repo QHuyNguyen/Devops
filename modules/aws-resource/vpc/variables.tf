@@ -5,3 +5,7 @@ variable "cidr" {
 variable "vpc_name" {
   type = string
 }
+
+variable "owner" {
+  type = string
+}

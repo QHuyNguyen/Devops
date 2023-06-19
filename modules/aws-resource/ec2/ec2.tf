@@ -20,5 +20,6 @@ resource "aws_instance" "worker_node" {
 
   tags = {
     Name = var.name
+    Owner = var.owner
   }
 }
