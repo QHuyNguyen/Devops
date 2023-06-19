@@ -1,8 +1,5 @@
-data "aws_subnets" "k8s_subnet" {
-  filter {
-    name   = "vpc-id"
-    values = ["vpc-04de38aa56a6daeb1"]
-  }
+data "aws_subnet_ids" "selected_subnet" {
+  id = var.subnet_id
 }
 
 data "aws_ami" "ubuntu" {
@@ -24,7 +21,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "worker_node" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  subnet_id = data.aws_subnets.k8s_subnet.id
+  subnet_id = data.aws_subnet_ids.selected_subnet
 
   tags = {
     Name = var.name
