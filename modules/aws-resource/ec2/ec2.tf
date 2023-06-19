@@ -1,7 +1,7 @@
 data "aws_subnets" "k8s_subnet" {
   filter {
     name   = "vpc-id"
-    values = [var.vpc_id]
+    values = ["vpc-04de38aa56a6daeb1"]
   }
 }
 
