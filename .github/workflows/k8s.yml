@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Arthur AWS Kubernetes
+name: Arthur AWS Kubernetes Init/Plan/Apply
 
 run-name: Run Terraform plan/apply on k8s resources
 
@@ -88,24 +88,6 @@ jobs:
           terraform show
           terraform apply -var-file="module.tfvars" --auto-approve
 
-  ec2-instance-destroy:
-    runs-on: ubuntu-latest
-    environment: production
-    env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
-    steps:
-      - uses: actions/checkout@v3
-      - name: Terraform Destroy
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
-          terraform destroy -var-file="module.tfvars" --auto-approve
-
   vpc-plan:
     runs-on: ubuntu-latest
     env:
@@ -142,22 +124,3 @@ jobs:
           terraform plan -var-file="module.tfvars"
           terraform show
           terraform apply -var-file="module.tfvars" --auto-approve
-
-  vpc-destroy:
-    runs-on: ubuntu-latest
-    environment: production
-    env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Terraform Destroy
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
-          terraform destroy -var-file="module.tfvars" --auto-approve
