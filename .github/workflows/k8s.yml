@@ -74,7 +74,7 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform destroy --auto-approve
+          terraform destroy -var-file="module.tfvars" --auto-approve
 #          terraform apply -var-file="module.tfvars" --auto-approve
 
   vpc-plan:
@@ -93,5 +93,5 @@ jobs:
           terraform init
           terraform plan -var-file="module.tfvars"
           terraform show
-          terraform destroy --auto-approve
+          terraform destroy -var-file="module.tfvars" --auto-approve
 #          terraform apply -var-file="module.tfvars" --auto-approve
