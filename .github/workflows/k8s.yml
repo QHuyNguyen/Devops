@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
 
 env:
-  ACCESS_KEY_ID: ASIA2QIXXJAZINSZSQGN
-  SECRET_ACCESS_KEY: uJ0N2FJCApYAC/M2tokVPcAzfdxcSl2IjBMUbZoW
-  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEDIaDmFwLXNvdXRoZWFzdC0yIkgwRgIhANYurdNQmq3aH5yybFt418Du/ZprhbVYpwG1+IqUYWWcAiEAhxT6Tj2kVcIMQvkvh5trFDP752w5a0smnNCnwN7UlhYqlwMIi///////////ARADGgw3MjIxNDExMzY5NDYiDH7p24foSLk0tEtB8yrrAsMlpnNSfhpFuCbtJM8n9EdieB0a9O+AprxCD3OwLjVcDjmqmTHnAV3U+0bTCknnkckQtfQWktMt/v/4nX7I5AIqQu/pbntp94pnsWjoYVnuhJ1dRnp8QUixIe989IdbeK6wyDjaJamN1X3M1GDmkoMTem/wwligcFnBiV1ROhnKCzoDkLLH3kAa0w2jsH5ur5CVu6fPu5bIY8mOOoTVxnagILpVK07o0C5CN2Z8r1wL3YefCJezxxq4/CvKgfZXM9R83aoT9LIFb+Co9aN36T1X2EPNA4AfDy6v+8bW9WDQZGjIdO59htQx9JlQmm5hi+Wh1pyGnPDWz3moAjwGGR8a8pRfpXUBkf+kyqlLubZoB1OJfqQsTWJVfQw7kGast7nUJpsrbdAJeh5XHEjG/SPn8TCuUx1cMdP/I+3BxyyC6TXoIU7+wfSReyvDsqAGXA2bQ71OkmROvBIQxrmW1ORP/KUKaZz1be/GqDCpvsCkBjqlAQEHXmkpAJGvdrY5ZPpx+18M3YaY4qz5Zg4UZLPW9rnB2v+1wOz/L8SZJfYdVNtQ5fXVqypkz7YDx+2QB8RrLzXodFR+pc9MkNGfh7giEJYmuw/0/4iD5f6LOYYhN1Oe96Naam3ZvWtyRAKl/U1fk4sRedY/NW1aVUgxkUjU7IGWlf9/yzBUvG5nsy5hfTwRzy9NqvrFXQuDQUcWChVA2ZgrsjWtEA==
+  ACCESS_KEY_ID: ASIA2QIXXJAZKZZBS6CT
+  SECRET_ACCESS_KEY: YLFiSU7zapUQGq0FCCoXX0fKO/lC/+1kxkyQz7Zh
+  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEEYaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAOboGrgPRxF8EFXqhf5EUr+5pFoNYUKl+AbyNNKCBVrGAiA7o5Thfc5qprdqW6UQZ51pAYMjmPaFl5cpl+g8r+jeWiqXAwif//////////8BEAMaDDcyMjE0MTEzNjk0NiIMGt/wBV3+eu7FnHfnKusCYxXg8MKuRU+TiVx9W0R2QRn/upr5UAPFNC8/+tqLfhEabthLh5zvBUl3Hsru3vQWPHBXSeQ5KaQc4nFMBDnOobPvlQ8IODE3MJ39m291ShjmlzybWBIZW1wpO6XGPdC4ghbOkVOPTFWnTyHBXq0TCjtC+RaV/umkNLNpQ7ulz0oQBvWxs9ofljBr9fsqN4taRBWRoh5r1pAReEe7qJv0Tryn4Pnx2IIO3SiQ+xy9kffnBXpDO5VQ9tdRdiSUgAL7gWGccfmNHzu5nzlvYVZlZbWNQMwaOcJgzbAYdKucCSCQ/ft9DXoWuARWYItqRT62tCCIt3p6ffWvzbTBLfgYwlNBBoNrfO0ocq06mvApQrLjXOJlMqdi+RykfxJ+LyqACJ+FSgJ2ebbLQaIxsQOXbTnDerUM0gYuxLiU0Ir2mmVv7zOzGTQ4f0eQjuMC2Ua6nlyMVRqd4BemNEAvnxYA17AQ8+GAU1W2Oj8VMLSIxaQGOqYBDtDplnQe9E1U3BbI/zO96f5PoNEV6vKb824wuYvDEIpRzHDNTx0+/ANIvEvZWalwdfJ/ej+YkUqk+0ZthDY21hZYtXq5W1/7N9yLueWgpSlePiv+JLpg+bZjCswy/SHECJuQ95vUwtF1DNmZrJB1o6pW3g7AybkvHBQdZkNla+LHwEFNegel7rMgspJtCOIe702mLT20823bW1n8Uo2FYkYL/wk6NQ==
   AWS_EC2_METADATA_DISABLED: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -74,7 +74,8 @@ jobs:
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform apply -var-file="module.tfvars" --auto-approve
+          terraform destroy --auto-approve
+#          terraform apply -var-file="module.tfvars" --auto-approve
 
   vpc-plan:
     runs-on: ubuntu-latest
@@ -92,4 +93,5 @@ jobs:
           terraform init
           terraform plan -var-file="module.tfvars"
           terraform show
-          terraform apply -var-file="module.tfvars" --auto-approve
+          terraform destroy --auto-approve
+#          terraform apply -var-file="module.tfvars" --auto-approve
