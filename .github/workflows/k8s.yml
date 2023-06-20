@@ -91,7 +91,6 @@ jobs:
   ec2-instance-destroy:
     runs-on: ubuntu-latest
     environment: production
-    needs: ec2-instance-plan
     env:
       TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
     steps:
@@ -146,7 +145,6 @@ jobs:
 
   vpc-destroy:
     runs-on: ubuntu-latest
-    needs: vpc-plan
     environment: production
     env:
       TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
