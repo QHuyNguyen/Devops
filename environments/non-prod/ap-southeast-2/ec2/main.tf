@@ -3,5 +3,6 @@ module "instance" {
   instance_type = var.instance_type
   name = var.name
   owner = var.owner
-  subnet_id = var.subnet_id
+#  subnet_id = var.subnet_id
+  subnet_id = module.k8s_vpc.k8s_subnet
 }
