@@ -4,5 +4,5 @@ module "instance" {
   name = var.name
   owner = var.owner
 #  subnet_id = var.subnet_id
-  subnet_id = module.k8s_vpc.public_subnet_id
+  subnet_id = module.vpc.public_subnet_id
 }
