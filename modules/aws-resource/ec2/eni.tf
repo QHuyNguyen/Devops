@@ -6,11 +6,20 @@ resource "aws_network_interface" "worker_node_eni" {
     instance     = aws_instance.worker_node.id
     device_index = 1
   }
+
+  tags = {
+    Name = "k8s_primary_network_interface"
+    Owner = var.owner
+  }
 }
 
 resource "aws_eip" "worker_node_eip" {
   vpc = true
 
-  instance                  = aws_instance.worker_node.id
-  associate_with_private_ip = "10.0.1.50"
+  network_interface = aws_network_interface.worker_node_eni.id
+
+  tags = {
+    Name = "k8s_eip"
+    Owner = var.owner
+  }
 }

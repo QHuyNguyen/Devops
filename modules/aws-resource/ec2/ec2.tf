@@ -23,6 +23,11 @@ resource "aws_instance" "worker_node" {
   instance_type = var.instance_type
   subnet_id = data.aws_subnet.selected_subnet.id
 
+  network_interface {
+    network_interface_id = aws_network_interface.worker_node_eni.id
+    device_index         = 0
+  }
+
   tags = {
     Name = var.name
     Owner = var.owner
