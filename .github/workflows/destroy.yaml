@@ -19,33 +19,13 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  ec2-instance-destroy:
+  vpc-ec2-destroy:
     runs-on: ubuntu-latest
     environment: production
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
     steps:
       - uses: actions/checkout@v3
-      - name: Terraform Destroy
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
-          terraform destroy -var-file="module.tfvars" --auto-approve
-
-  vpc-destroy:
-    runs-on: ubuntu-latest
-    environment: production
-    needs: ec2-instance-destroy
-    env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
-    steps:
-      - uses: actions/checkout@v3
-
       - name: Terraform Destroy
         run: |
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}

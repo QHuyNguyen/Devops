@@ -2,14 +2,18 @@ variable "instance_type" {
   type = string
 }
 
+variable "cidr_range" {
+  type = string
+}
+
 variable "instance_name" {
   type = string
 }
 
-variable "owner" {
+variable "vpc_name" {
   type = string
 }
 
-variable "public_subnet_id" {
+variable "owner" {
   type = string
 }

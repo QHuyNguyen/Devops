@@ -25,12 +25,11 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  ec2-instance-plan:
+  vpc-ec2-plan:
     # The type of runner that the job will run on
-    needs: vpc-apply
     runs-on: ubuntu-latest
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -69,51 +68,14 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform show
 
-  ec2-instance-apply:
+  vpc-ec2-apply:
     runs-on: ubuntu-latest
     environment: production
-    needs: ec2-instance-plan
+    needs: vpc-ec2-plan
     env:
       TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
     steps:
       - uses: actions/checkout@v3
-      - name: Terraform Apply
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
-          terraform apply -var-file="module.tfvars" --auto-approve
-
-  vpc-plan:
-    runs-on: ubuntu-latest
-    env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Terraform Plan
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
-          cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
-
-  vpc-apply:
-    runs-on: ubuntu-latest
-    needs: vpc-plan
-    environment: production
-    env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
-    steps:
-      - uses: actions/checkout@v3
-
       - name: Terraform Apply
         run: |
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
