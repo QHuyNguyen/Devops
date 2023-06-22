@@ -21,6 +21,7 @@ data "aws_ami" "ubuntu" {
 resource "aws_instance" "worker_node" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
+  subnet_id = var.subnet_id
 #  subnet_id = data.aws_subnet.selected_subnet.id
 
   network_interface {
