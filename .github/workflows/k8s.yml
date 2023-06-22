@@ -73,7 +73,7 @@ jobs:
     environment: production
     needs: vpc-ec2-plan
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/ec2
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Apply
