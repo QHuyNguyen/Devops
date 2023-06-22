@@ -1,5 +1,5 @@
 resource "aws_network_interface" "worker_node_eni" {
-  subnet_id       = data.aws_subnet.selected_subnet.id
+  subnet_id       = var.public_subnet_id
   private_ips     = ["10.0.1.50"]
 
   tags = {
