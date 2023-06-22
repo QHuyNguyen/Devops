@@ -40,6 +40,7 @@ jobs:
   vpc-destroy:
     runs-on: ubuntu-latest
     environment: production
+    needs: ec2-instance-destroy
     env:
       TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
     steps:
