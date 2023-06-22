@@ -9,7 +9,3 @@ variable "name" {
 variable "owner" {
   type = string
 }
-
-variable "subnet_id" {
-  type = string
-}
