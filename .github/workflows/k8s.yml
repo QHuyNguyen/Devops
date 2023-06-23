@@ -83,6 +83,4 @@ jobs:
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
-          terraform plan -var-file="module.tfvars"
-          terraform show
           terraform apply -var-file="module.tfvars" --auto-approve

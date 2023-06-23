@@ -24,7 +24,6 @@ resource "aws_instance" "worker_node" {
   instance_type = var.instance_type
 #  subnet_id = var.public_subnet_id
 #  subnet_id = data.aws_subnet.selected_subnet.id
-  vpc_security_group_ids = [var.k8s_sg]
 
   network_interface {
     network_interface_id = aws_network_interface.worker_node_eni[count.index].id
