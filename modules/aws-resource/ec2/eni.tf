@@ -1,7 +1,7 @@
 resource "aws_network_interface" "worker_node_eni" {
   count = var.instance_count
   subnet_id       = var.public_subnet_id
-  private_ips     = element(concat(var.private_ips, list("")), count.index)
+  private_ips     = element(concat(var.private_ips, tolist("")), count.index)
 
   tags = {
     Name = join("-", ["k8s_primary_network_interface", count.index])
