@@ -6,9 +6,10 @@ module "vpc" {
 }
 
 module "instance" {
+  for_each = var.instance_name
   source = "../../../../modules/aws-resource/ec2"
+  instance_name = each.value
   instance_type = var.instance_type
-  instance_name = var.instance_name
   owner = var.owner
   public_subnet_id = module.vpc.public_subnet_id
 }

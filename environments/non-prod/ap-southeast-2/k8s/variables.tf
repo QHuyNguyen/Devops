@@ -7,7 +7,7 @@ variable "cidr_range" {
 }
 
 variable "instance_name" {
-  type = string
+  type = list(string)
 }
 
 variable "vpc_name" {
