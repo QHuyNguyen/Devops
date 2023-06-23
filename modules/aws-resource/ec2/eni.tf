@@ -12,7 +12,7 @@ resource "aws_network_interface" "worker_node_eni" {
 resource "aws_eip" "worker_node_eip" {
   vpc = true
   
-  network_interface = aws_network_interface.worker_node_eni.id
+  network_interface = aws_network_interface.worker_node_eni[count.index].id
   associate_with_private_ip = "10.0.1.50"
   depends_on        = [aws_instance.worker_node]
   tags = {
