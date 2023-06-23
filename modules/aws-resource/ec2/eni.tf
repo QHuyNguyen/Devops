@@ -12,7 +12,7 @@ resource "aws_eip" "worker_node_eip" {
   vpc = true
 
   network_interface = aws_network_interface.worker_node_eni.id
-
+  depends_on        = [aws_instance.worker_node.id]
   tags = {
     Name = "k8s_eip"
     Owner = var.owner

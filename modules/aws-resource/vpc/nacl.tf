@@ -6,8 +6,8 @@ resource "aws_network_acl" "k8s_nacl" {
     rule_no    = 200
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 443
-    to_port    = 443
+    from_port  = 0
+    to_port    = 0
   }
 
   ingress {
@@ -15,8 +15,8 @@ resource "aws_network_acl" "k8s_nacl" {
     rule_no    = 100
     action     = "allow"
     cidr_block = "0.0.0.0/0"
-    from_port  = 80
-    to_port    = 80
+    from_port  = 0
+    to_port    = 0
   }
 
   tags = {
