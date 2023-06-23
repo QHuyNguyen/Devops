@@ -31,7 +31,7 @@ resource "aws_instance" "worker_node" {
   }
 
   tags = {
-    Name = var.instance_name
+    Name = element(var.instance_name, count.index)
     Owner = var.owner
   }
 }
