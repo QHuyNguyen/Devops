@@ -26,7 +26,3 @@ variable "instance_count" {
 variable "private_ips" {
   type = list(string)
 }
-
-variable "k8s_sg" {
-  type = string
-}
