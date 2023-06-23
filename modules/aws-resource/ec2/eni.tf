@@ -1,20 +1,22 @@
 resource "aws_network_interface" "worker_node_eni" {
+  count = var.instance_count
   subnet_id       = var.public_subnet_id
-  private_ips     = ["10.0.1.50"]
+  private_ips     = element(var.private_ips, count.index)
 
   tags = {
-    Name = "k8s_primary_network_interface"
+    Name = join("-", ["k8s_primary_network_interface", count.index])
     Owner = var.owner
   }
 }
 
 resource "aws_eip" "worker_node_eip" {
   vpc = true
-
+  
   network_interface = aws_network_interface.worker_node_eni.id
+  associate_with_private_ip = "10.0.1.50"
   depends_on        = [aws_instance.worker_node]
   tags = {
-    Name = "k8s_eip"
+    Name = join("-", ["k8s_eip", count.index])
     Owner = var.owner
   }
 }
