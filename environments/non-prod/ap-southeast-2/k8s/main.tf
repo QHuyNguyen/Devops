@@ -14,4 +14,5 @@ module "instance" {
   owner = var.owner
 #  subnet_id = var.subnet_id
   public_subnet_id = module.vpc.public_subnet_id
+  k8s_sg = module.vpc.k8s_sg_id
 }

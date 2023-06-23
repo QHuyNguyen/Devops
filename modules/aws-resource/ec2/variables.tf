@@ -14,6 +14,10 @@ variable "public_subnet_id" {
   type = string
 }
 
+variable "k8s_sg" {
+  type = string
+}
+
 variable "instance_count" {
   type = number
   default = 1
