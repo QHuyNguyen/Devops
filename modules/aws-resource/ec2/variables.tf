@@ -3,7 +3,7 @@ variable "instance_type" {
 }
 
 variable "instance_name" {
-  type = list(string)
+  type = string
 }
 
 variable "owner" {
@@ -12,4 +12,9 @@ variable "owner" {
 
 variable "public_subnet_id" {
   type = string
+}
+
+variable "instance_count" {
+  type = number
+  default = 1
 }

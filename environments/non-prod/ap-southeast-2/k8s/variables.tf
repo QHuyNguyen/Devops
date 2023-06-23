@@ -7,7 +7,7 @@ variable "cidr_range" {
 }
 
 variable "instance_name" {
-  type = list(string)
+  type = string
 }
 
 variable "vpc_name" {
@@ -16,4 +16,9 @@ variable "vpc_name" {
 
 variable "owner" {
   type = string
+}
+
+variable "instance_count" {
+  type = number
+  default = 1
 }

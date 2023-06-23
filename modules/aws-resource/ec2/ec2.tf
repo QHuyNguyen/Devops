@@ -19,6 +19,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "worker_node" {
+  count = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 #  subnet_id = var.public_subnet_id
