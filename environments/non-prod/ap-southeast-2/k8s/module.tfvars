@@ -3,4 +3,4 @@ cidr_range = "10.0.0.0/16"
 instance_name = ["arthur-worker-node", "arthur-master-node"]
 vpc_name = "k8s-vpc"
 owner = "arthur"
-instance_count = 1
+instance_count = 2
