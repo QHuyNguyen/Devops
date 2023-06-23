@@ -1,7 +1,12 @@
+data "aws_subnet" "selected_subnet" {
+  id = var.subnet_id
+}
+
+
 resource "aws_network_interface" "worker_node_eni" {
   count = var.instance_count
   subnet_id       = var.public_subnet_id
-  private_ips     = var.private_ips[count.index]
+  private_ips     = length(var.private_ips) > 0 ? element(var.private_ips, count.index) : var.private_ip
 
   tags = {
     Name = join("-", ["k8s_primary_network_interface", count.index])
