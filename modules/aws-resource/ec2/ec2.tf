@@ -26,7 +26,7 @@ resource "aws_instance" "worker_node" {
 #  subnet_id = data.aws_subnet.selected_subnet.id
 
   network_interface {
-    network_interface_id = element(aws_network_interface.worker_node_eni.id, count.index)
+    network_interface_id = aws_network_interface.worker_node_eni[count.index].id
     device_index         = 0
   }
 
