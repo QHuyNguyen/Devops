@@ -17,10 +17,12 @@ on:
   workflow_dispatch:
 
 env:
-  ACCESS_KEY_ID: ASIA2QIXXJAZICEL7VBM
-  SECRET_ACCESS_KEY: RRFn1Xp6Rez+tJhGPHHPei1O7H2dK8QnBvgJrjmv
-  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEJD//////////wEaDmFwLXNvdXRoZWFzdC0yIkcwRQIhAMBZGqXZ56yw77Ih+hoDm5FhMRlvbZ1dK4pFk/a4lEI8AiAeRc7i1A8PuNzWnjC3vDbi9lJcMHdmcZ3YJ8YBJxku4yqXAwjp//////////8BEAMaDDcyMjE0MTEzNjk0NiIMi0FY5fEp421Us2G7KusCG/zvsuNCIXlV1vVG2pVJU4n2C2dSRwq3oZau9b0EJXTVWEyTt3Yq2ETmjtmhCcv3el1nRkkGJPuk2EUkg+vE5RyW3nRs3i2c2CYmTm51SmKTefYEWgBCMIl8VpSLRopalAqMA1iZryn7U3gL5+hnGdfox/Tnbzgpbw67k78WwkQ9q3CQnqzh5turguJQCStNNAu3bEM9cYTDcWLb+evegS3ByWElznlKArvsosugpS2v7TbCmnb2M9+FqMNf4nI5FWpN8ZcAkhP62I4AZ2x4Mc5iA8uxR3dxEIWVRZ2Ztv2dIGe7kt1o74OT3ekTTiKowtpvNcvSWXYU3eQ0sVJOUIeW7Wut4ikLOh1GFfz+6g/V7yydEIy359KT8S+D7pGEsgjgiL4k7IArLsUlgM21gaC3PsVzYxVYzgTIUM6kd9v2okLeiX3x/uIRvOkArJSynLDCw9kEvGY0e9U6GkMfyv+JjdznCjYJCvdWMOam1aQGOqYBzE8YhQk3VDB1G2Nyq0lXn71QnGviX633KadDk23s86YCx/8G075dGmtXpxExtdQzRdJz1sGMYNZCc70wFqDkh/Dds2iPoUoNl/FgtEvVxFZsz536yoGWUWLolqltjjLew0VVTD15OgqS2BESdS4bMg7oi8uVwAcBSMETf8Zb00blwCqd79lHaXpnEdUrltC28I/O21V4v3zGvTHqXa1nEpdZoVw6nA==
+  AWS_REGION: ap-southeast-2  
   AWS_EC2_METADATA_DISABLED: true
+
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read  # This is required for actions/checkout
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -37,34 +39,24 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Access AWS account
-        # access key for devops aws
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
-          aws sts get-caller-identity
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
+          role-session-name: samplerolesession
+          aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
-        run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}          
+        run: |      
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform init
       
       - name: Terraform Plan
         run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform plan -var-file="module.tfvars"
       
       - name: Terraform Show
         run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform show
 
