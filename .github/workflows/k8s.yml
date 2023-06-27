@@ -42,7 +42,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v2
         with:
           role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
-          role-session-name: samplerolesession
+          role-session-name: TerraformPlan
           aws-region: ${{ env.AWS_REGION }}
 
       - name: Terraform Init
