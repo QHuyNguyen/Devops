@@ -44,14 +44,13 @@ jobs:
           role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
           role-session-name: TerraformPlan
           aws-region: ${{ env.AWS_REGION }}
+          managed-session-policies: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
       - name: Terraform Init
         run: |      
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           echo "***List sts identity***"
           aws sts get-caller-identity
-          echo "***List EC2 instances***"
-          aws ec2 describe-instances
           echo "***List all buckets***"
           aws s3 ls
           terraform init -reconfigure
