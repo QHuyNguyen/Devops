@@ -48,6 +48,7 @@ jobs:
       - name: Terraform Init
         run: |      
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
+          aws sts get-caller-identity
           aws s3 ls
           terraform init
       
