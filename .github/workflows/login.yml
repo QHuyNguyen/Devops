@@ -17,6 +17,8 @@ on:
   workflow_dispatch:
 
 env:
+  ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
+  SECRET_ACCESS_KEY: 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
   AWS_REGION: ap-southeast-2
   AWS_EC2_METADATA_DISABLED: true
 
@@ -42,11 +44,10 @@ jobs:
         run: echo Hello, world!
 
       - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::765614147579:role/github-action-OpenID-testrole
-          role-session-name: samplerolesession
-          aws-region: ${{ env.AWS_REGION }}
+        run: |
+          aws configure set aws_access_key_id ${{ env.ACCESS_KEY_ID }}
+          aws configure set aws_secret_access_key ${{ env.SECRET_ACCESS_KEY }}
+          aws sts get-caller-identity
 
       # Runs a set of commands using the runners shell
       - name: Access AWS account
@@ -54,5 +55,4 @@ jobs:
         env:
           TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
         run: |
-          aws sts get-caller-identity
           aws s3 ls
