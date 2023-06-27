@@ -44,7 +44,6 @@ jobs:
           role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
           role-session-name: TerraformPlan
           aws-region: ${{ env.AWS_REGION }}
-          managed-session-policies: arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess
 
       - name: Terraform Init
         run: |      
