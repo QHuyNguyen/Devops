@@ -50,7 +50,7 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           aws sts get-caller-identity
           aws s3 ls
-          terraform init
+          terraform init -reconfigure
       
       - name: Terraform Plan
         run: |
