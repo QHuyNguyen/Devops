@@ -50,14 +50,16 @@ jobs:
           role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
           role-session-name: samplerolesession
           aws-region: ${{ env.AWS_REGION }}
+        run: |
+          aws sts get-caller-identity
 
       # Runs a set of commands using the runners shell
-      - name: Access AWS account
-        # access key for devops aws
-        env:
-          TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
-        run: |
+#      - name: Access AWS account
+#        # access key for devops aws
+#        env:
+#          TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
+#        run: |
 #          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
 #          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
 #          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
-          aws sts get-caller-identity
+#          aws sts get-caller-identity
