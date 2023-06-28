@@ -17,12 +17,10 @@ on:
   workflow_dispatch:
 
 env:
-  AWS_REGION: ap-southeast-2  
+  ACCESS_KEY_ID: ASIA2QIXXJAZEI466OBK
+  SECRET_ACCESS_KEY: KsAL2t47VH+06iscmFksS7PtUhM5vNyEzEzGWXSq
+  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEAUaDmFwLXNvdXRoZWFzdC0yIkgwRgIhAKweoWBItN2O8WupKPaPdojhe3kAPAO+qGVPr8KWorjNAiEAocZyEsSVV++E22DBGSYyK9LW/HA7gaDVflJJcvl//UoqjgMIbhADGgw3MjIxNDExMzY5NDYiDInGOuBcC08VCDbzcirrApwF1PN9UBfqVfxDJeArP6iCxlmTHoPOIZtCyUYfDHayToSMXF78tRpK8L+XEsD5Pk3y6oOd/4vLl/vF+DHQEQw4zq7v98twasyS5cL/RnOEGUgcQ7U3wbnF75YVVXlPau1h+RMVsT/hJ1Ong28YOTRljRpUq0tFZ9CbK0OLbjCe3fcQDDcXeySLRmaogyUEk4VPu7oZkmPK/tuLkox7FebwnCYbkJXbESYwJb4PHCquiGLOLzfAFb9v/KcLs3W0H67SIssz2Y3ZhJvS/QDaeWNMILHXrjcXRCUQ4OPII/+q4jukauqtRng7W7eW/pr0z9TXZarubTLKslXh1vDLM3obamVckBPsJQrAKbO8dPpAK1P23szhWRn42zZZCyGvj4HMxeKcDFJJuK/Po721J+/3NO2zOVs5DPrKy5vjr20J662Zo1isbv9AZNfB1lamZN7aUT+a80JahSTEzJWszH3mswkK5SVua0HwsTCl9u6kBjqlAfWstzRRvPlfDVNKhSTMbVAZOaaKxszTvx3dpeNS/4QPt5PHj6/qeRmAUB+E/hGJZ6E0y+3+b9jrsM0MMgyC85eJoQqLEkB8RolAqr3bybIzdaqXKUbm5gMRa3FsrhZl+BdfYsr1KTyYjlhqvK2BlBz0IlHO9ga9ve1pcM+XKHZkCXljQXLNX+jrP3ArGtjoNmkCkMO6p4ZUtmiOxuusbLwAg7kfDQ==
   AWS_EC2_METADATA_DISABLED: true
-
-permissions:
-  id-token: write # This is required for requesting the JWT
-  contents: read  # This is required for actions/checkout
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -39,20 +37,17 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Access AWS account
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          role-to-assume: arn:aws:iam::722141136946:role/arthur-OpenID-role-test
-          role-session-name: TerraformPlan
-          aws-region: ${{ env.AWS_REGION }}
+        # access key for devops aws
+        run: |
+          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
+          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
+          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
+          aws sts get-caller-identity
 
       - name: Terraform Init
-        run: |      
+        run: |        
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
-          echo "***List sts identity***"
-          aws sts get-caller-identity
-          echo "***List all buckets***"
-          aws s3 ls
-          terraform init -reconfigure
+          terraform init
       
       - name: Terraform Plan
         run: |
