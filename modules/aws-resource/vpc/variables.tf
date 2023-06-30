@@ -18,3 +18,7 @@ variable "subnet_count" {
   type = number
   default = 1
 }
+
+variable "subnet_name" {
+  type = list(string)
+}
