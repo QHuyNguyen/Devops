@@ -4,6 +4,7 @@ resource "aws_nat_gateway" "nat_gateway" {
   tags = {
     "Name" = "k8s-arthur-nat-gateway"
   }
+  depends_on = [aws_internet_gateway.k8s_igw]
 }
 
 resource "aws_eip" "nat_gateway_eip" {
