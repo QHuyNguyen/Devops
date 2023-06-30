@@ -26,6 +26,7 @@ resource "aws_network_acl" "k8s_nacl" {
 }
 
 resource "aws_network_acl_association" "main" {
+  count = var.subnet_count
   network_acl_id = aws_network_acl.k8s_nacl.id
-  subnet_id      = aws_subnet.k8s_subnet.id
+  subnet_id      = aws_subnet.k8s_subnet.id[count.index]
 }
