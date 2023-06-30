@@ -1,5 +1,5 @@
 output "public_subnet_id" {
-    count = subnet_count
+    count = var.subnet_count
     value = aws_subnet.k8s_subnet.id[count.index]
 }
 
