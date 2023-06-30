@@ -31,7 +31,7 @@ resource "aws_route_table" "k8s_private_rt" {
   }
 }
 
-resource "aws_route_table_association" "public_asso" {
+resource "aws_route_table_association" "private_asso" {
   subnet_id = aws_subnet.k8s_subnet[1].id
   route_table_id = aws_route_table.k8s_private_rt.id
 }
