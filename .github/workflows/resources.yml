@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Arthur AWS Kubernetes Init/Plan/Apply
+name: Arthur AWS Resource Init/Plan/Apply
 
-run-name: Run Terraform plan/apply on k8s resources
+run-name: Run Terraform plan/apply on AWS resources
 
 
 # Controls when the workflow will run
@@ -17,20 +17,19 @@ on:
   workflow_dispatch:
 
 env:
-  ACCESS_KEY_ID: ASIA2QIXXJAZEI466OBK
-  SECRET_ACCESS_KEY: KsAL2t47VH+06iscmFksS7PtUhM5vNyEzEzGWXSq
-  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEAUaDmFwLXNvdXRoZWFzdC0yIkgwRgIhAKweoWBItN2O8WupKPaPdojhe3kAPAO+qGVPr8KWorjNAiEAocZyEsSVV++E22DBGSYyK9LW/HA7gaDVflJJcvl//UoqjgMIbhADGgw3MjIxNDExMzY5NDYiDInGOuBcC08VCDbzcirrApwF1PN9UBfqVfxDJeArP6iCxlmTHoPOIZtCyUYfDHayToSMXF78tRpK8L+XEsD5Pk3y6oOd/4vLl/vF+DHQEQw4zq7v98twasyS5cL/RnOEGUgcQ7U3wbnF75YVVXlPau1h+RMVsT/hJ1Ong28YOTRljRpUq0tFZ9CbK0OLbjCe3fcQDDcXeySLRmaogyUEk4VPu7oZkmPK/tuLkox7FebwnCYbkJXbESYwJb4PHCquiGLOLzfAFb9v/KcLs3W0H67SIssz2Y3ZhJvS/QDaeWNMILHXrjcXRCUQ4OPII/+q4jukauqtRng7W7eW/pr0z9TXZarubTLKslXh1vDLM3obamVckBPsJQrAKbO8dPpAK1P23szhWRn42zZZCyGvj4HMxeKcDFJJuK/Po721J+/3NO2zOVs5DPrKy5vjr20J662Zo1isbv9AZNfB1lamZN7aUT+a80JahSTEzJWszH3mswkK5SVua0HwsTCl9u6kBjqlAfWstzRRvPlfDVNKhSTMbVAZOaaKxszTvx3dpeNS/4QPt5PHj6/qeRmAUB+E/hGJZ6E0y+3+b9jrsM0MMgyC85eJoQqLEkB8RolAqr3bybIzdaqXKUbm5gMRa3FsrhZl+BdfYsr1KTyYjlhqvK2BlBz0IlHO9ga9ve1pcM+XKHZkCXljQXLNX+jrP3ArGtjoNmkCkMO6p4ZUtmiOxuusbLwAg7kfDQ==
+  ACCESS_KEY_ID: ASIA2QIXXJAZMBBN5SGI
+  SECRET_ACCESS_KEY: KTL5FmXoLloDe0cIMGfYOODsvp67cbLphrUezsbg
+  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEDgaDmFwLXNvdXRoZWFzdC0yIkcwRQIgN1tWGz/Em58S6+k1ESZ2o6UM/iMNrsrYBy3fNVVeN7YCIQDN1OQKDArhL+DYv6plkxGlfswPRNRNXS3e+DvClCzqliqXAwih//////////8BEAMaDDcyMjE0MTEzNjk0NiIM/jtINq89AR6szUdyKusCfBUEk84Jviit+z2CSK3WoKeKVk/ujU/AecbgS7wqOmFWrO0Xb6dT8jl80/E1FwCSevCacaHytyE3PrbqkVa0eQo+FIMDkXBbvXSGTshFIiElnhCm//vCkMdUDTnXu2n2D5BCy50u2OGh768/o0h65jd6pebZbrDuUmOrTUClkxyZgawDt3dwOtw5v96fMRm52xHEa1hu/tSh/CURE5PrwRUsHg9bkn6pMDFdQtRlE4QX/2Fgyk/IhaGnNE+qbeaImIYWuyQ9sfTHqShWr9LTAH+d3Av4w47RDN5F72opa+C0ALSghtNTD84jtCC8eyJ8BT81ml37GkQ4F2S2ezaE4csaMGoK+u9IedYrIPusc4bCb0HFxVT2zV4yGJF7c7HDDBZYfNDEoo5XK7/ucK6oOgNs7WK3R0dXH41YzvJvISUphLxrQY1E6KQ3t2MdpO9qp5FKUkDMxO3ZcAapV0QS2XFzDJ3+cpsPb6XeMN+P+qQGOqYBVox15ydVo1LbQuNCpgmNiVe10NJxQhRUtOjqJZeT9ybSSbjP1LDJ3bRpsFQslnzNHZTZA4d9vWI/1BNMW60ZAZE6lfOuRLVmHuLc9254H+q30rA4sPlJg0xINSqMkJlQ9edXL96ngUUu2Ivzgh9CLpdc9LkZz5lfEOrdlOUs4FnOfd8v53mhNen7UE8cO/c+ewFwQkhjCm73CLCgB2TUAK/r7wadVQ==
   AWS_EC2_METADATA_DISABLED: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  vpc-ec2-plan:
+  vpc-plan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
-    environment: production
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -69,12 +68,12 @@ jobs:
           cd ${{ env.TERRAFORM_ROOT_MODULE }}
           terraform show
 
-  vpc-ec2-apply:
+  vpc-apply:
     runs-on: ubuntu-latest
     environment: production
-    needs: vpc-ec2-plan
+    needs: vpc-plan
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
+      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Apply

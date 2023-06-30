@@ -1,6 +1,7 @@
 resource "aws_subnet" "k8s_subnet" {
+  count = var.subnet_count
   vpc_id = aws_vpc.k8s_vpc.id
-  cidr_block = "10.0.1.0/24"
+  cidr_block = var.subnet_cidr
   availability_zone = "ap-southeast-2a"
 
   tags = {

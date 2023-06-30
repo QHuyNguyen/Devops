@@ -1,6 +1,6 @@
 module "vpc" {
   source = "../../../../modules/aws-resource/vpc"
-  cidr = var.cidr_range
+  vpc_cidr = var.cidr_range
   vpc_name = var.vpc_name
   owner = var.owner
 }
