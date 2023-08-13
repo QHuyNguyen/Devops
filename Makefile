@@ -14,11 +14,11 @@ init:
 
 #plan
 plan: init
-	cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"
+	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"''
 
 #show
 show: init plan
-	cd environments/non-prod/ap-southeast-2/vpc; terraform show
+	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform show'
 #apply
 apply: init
-	cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve
+	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
