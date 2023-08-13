@@ -14,7 +14,7 @@ init:
 
 #plan
 plan: init
-	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"''
+	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
 
 #show
 show: init plan
