@@ -9,17 +9,17 @@ sts:
 	docker-compose run --rm devops-utils sh -c 'aws sts get-caller-identity'
 
 #initialise
-init:
+init: sts
 #	cd environments/non-prod/ap-southeast-2/vpc; terraform init
 	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform init'
 
 #plan
-plan: init
+plan: sts init
 	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
 
 #show
-show: init plan
+show: sts init plan
 	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform show'
 #apply
-apply: init
+apply: sts init
 	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
