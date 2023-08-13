@@ -6,7 +6,8 @@ hello:
 
 #initialise
 init:
-	cd environments/non-prod/ap-southeast-2/vpc; terraform init
+#	cd environments/non-prod/ap-southeast-2/vpc; terraform init
+	docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform init'
 
 #plan
 plan: init

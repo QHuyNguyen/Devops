@@ -14,9 +14,9 @@ services:
       - ~/.ssh:/root/.ssh
     working_dir: /work
 
-  envvars:
-    image: flemay/envvars:0.0.7
-    env_file: .env
-    working_dir: /work
-    volumes:
-      - .:/work
+  #envvars:
+  #  image: flemay/envvars:0.0.7
+  #  env_file: .env
+  #  working_dir: /work
+  #  volumes:
+  #    - .:/work
