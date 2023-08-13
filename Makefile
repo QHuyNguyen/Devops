@@ -4,6 +4,9 @@ hello:
 #.phony tell makefile that the command does not involve actual file
 .PHONY: hello
 
+sts:
+	docker-compose run --rm devops-utils sh -c 'aws sts get-caller-identity'
+
 #initialise
 init:
 #	cd environments/non-prod/ap-southeast-2/vpc; terraform init
