@@ -37,7 +37,7 @@ jobs:
 
       # Runs a set of commands using the runners shell
       - name: Access AWS account
-        # access key for devops aws
+        # Assume role from 1 account to do stuff in other accounts
         run: |
           make sts
 

@@ -5,6 +5,7 @@ hello:
 .PHONY: hello
 
 sts:
+	docker-compose run --rm devops-utils sh -c 'aws sts assume-role --role-arn=arn:aws:iam::722141136946:role/gha-admin-role --role-session-name=prod'
 	docker-compose run --rm devops-utils sh -c 'aws sts get-caller-identity'
 
 #initialise
