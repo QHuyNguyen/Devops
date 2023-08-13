@@ -39,9 +39,6 @@ jobs:
       - name: Access AWS account
         # access key for devops aws
         run: |
-          export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
-          export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
-          export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}
           aws sts get-caller-identity
 
       - name: Terraform Init
