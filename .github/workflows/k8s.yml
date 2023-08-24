@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Arthur AWS Kubernetes Init/Plan/Apply
+name: Arthur AWS Kubernetes Init/Plan/Apply broken
 
 run-name: Run Terraform plan/apply on k8s resources
 
