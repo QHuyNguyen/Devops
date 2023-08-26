@@ -27,8 +27,8 @@ jobs:
   # This workflow contains a single job called "setup"
   vpc-plan:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+#    runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     env:
       TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
 
