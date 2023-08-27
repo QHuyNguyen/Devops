@@ -1,5 +1,5 @@
 module "instance" {
-  source = "../../../../modules/aws-resource/ec2"
+  source = "../../modules/aws-resource/ec2"
   instance_count = var.instance_count
   instance_type = var.instance_type
   instance_name = var.instance_name
