@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/k8s
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ap-southeast-2/k8s
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it

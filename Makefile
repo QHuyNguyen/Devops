@@ -16,7 +16,7 @@ init: sts
 #plan
 plan: sts init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
-	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform plan -var-file="../../environments/non-prod/ap-southeast-2/vpc/module.tfvars"'
+	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform plan -var-file="../../accounts/environments/non-prod/vpc/module.tfvars"'
 
 #show
 show: sts init plan
@@ -24,7 +24,9 @@ show: sts init plan
 	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform show'
 #apply
 apply: sts init
-	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
+#	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
+	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform apply -var-file="../../accounts/environments/non-prod/vpc/module.tfvars" --auto-approve'
 #destroy
 destroy: sts init
-	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform destroy -var-file="module.tfvars" --auto-approve'
+#	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform destroy -var-file="module.tfvars" --auto-approve'
+	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform destroy -var-file="../../accounts/environments/non-prod/vpc/module.tfvars" --auto-approve'

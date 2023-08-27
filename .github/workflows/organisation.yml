@@ -24,7 +24,7 @@ jobs:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
       AWS_EC2_METADATA_DISABLED: true
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/organization
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ap-southeast-2/organization
     steps:
       - name: Checkout the current repo
         uses: actions/checkout@v3
@@ -68,7 +68,7 @@ jobs:
       ACCESS_KEY_ID: AKIA3EQRIY757QAU2EG7
       SECRET_ACCESS_KEY: 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
       AWS_EC2_METADATA_DISABLED: true
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/organization
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ap-southeast-2/organization
     steps:
       - name: Checkout the current repo
         uses: actions/checkout@v3

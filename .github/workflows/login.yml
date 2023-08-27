@@ -54,7 +54,7 @@ jobs:
       - name: Access AWS account
         # access key for devops aws
         env:
-          TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/s3
+          TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/s3
         run: |
           aws sts get-caller-identity
           aws s3 ls

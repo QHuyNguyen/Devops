@@ -30,7 +30,7 @@ jobs:
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -60,7 +60,7 @@ jobs:
     environment: production
     needs: vpc-plan
     env:
-      TERRAFORM_ROOT_MODULE: environments/non-prod/ap-southeast-2/vpc
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Apply
