@@ -1,5 +1,5 @@
 module "vpc" {
-  source = "../../../../modules/aws-resource/vpc"
+  source = "../../modules/aws-resource/vpc"
   vpc_cidr = var.vpc_cidr
   subnet_count = var.subnet_count
   subnet_cidr = var.subnet_cidr
