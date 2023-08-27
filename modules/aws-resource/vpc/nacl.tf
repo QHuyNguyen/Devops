@@ -1,7 +1,7 @@
 resource "aws_network_acl" "this" {
   vpc_id = aws_vpc.this.id
 
-  subnet_ids = aws_subnet.this.subnet_ids
+  subnet_ids = aws_subnet.this.*.id
 
   egress {
     protocol   = "all"
