@@ -15,17 +15,17 @@ sts:
 init: sts
 #	cd environments/non-prod/ap-southeast-2/vpc; terraform init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform init'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
+	sudo docker-compose run --rm devops-utils sh -c 'terraform init'
 
 #plan
 plan: sts init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -var-file="../../accounts/environments/non-prod/vpc/module.tfvars"'
+	sudo docker-compose run --rm devops-utils sh -c 'terraform plan -var-file="../../accounts/environments/non-prod/vpc/module.tfvars"'
 
 #show
 show: sts init plan
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform show'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform show'
+	sudo docker-compose run --rm devops-utils sh -c 'terraform show'
 #apply
 apply: sts init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
