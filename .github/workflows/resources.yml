@@ -47,17 +47,14 @@ jobs:
 
       - name: Terraform Init
         run: |
-#          cd components/${{ matrix.components }}
           make init
       
       - name: Terraform Plan
         run: |
-#          cd components/${{ matrix.components }}
           make plan
       
       - name: Terraform Show
         run: |
-#          cd components/${{ matrix.components }}
           make show
 
   vpc-apply:
