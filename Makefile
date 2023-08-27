@@ -16,7 +16,7 @@ init: sts
 #plan
 plan: sts init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
-	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform plan -var-file="environments/non-prod/ap-southeast-2/vpc/module.tfvars"'
+	sudo docker-compose run --rm devops-utils sh -c 'cd components/vpc; terraform plan -var-file="../../environments/non-prod/ap-southeast-2/vpc/module.tfvars"'
 
 #show
 show: sts init plan
