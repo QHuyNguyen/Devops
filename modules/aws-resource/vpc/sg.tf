@@ -1,7 +1,7 @@
 resource "aws_security_group" "allow_SSH_HTTP" {
   name        = "allow_SSH_HTTP"
   description = "Allow TLS inbound traffic"
-  vpc_id      = aws_vpc.k8s_vpc.id
+  vpc_id      = aws_vpc.this.id
 
   ingress {
     description = "SSH"

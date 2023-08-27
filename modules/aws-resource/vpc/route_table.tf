@@ -1,37 +1,37 @@
-resource "aws_route_table" "k8s_public_rt" {
-  vpc_id = aws_vpc.k8s_vpc.id
+resource "aws_route_table" "public_rt" {
+  vpc_id = aws_vpc.this.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.k8s_igw.id
+    gateway_id = aws_internet_gateway.this.id
   }
 
   tags = {
-    Name = "k8s-public-rt"
+    Name = "devops-public-rt"
     Owner = var.owner
   }
 }
 
 resource "aws_route_table_association" "public_asso" {
-  subnet_id = aws_subnet.k8s_subnet[0].id
-  route_table_id = aws_route_table.k8s_public_rt.id
+  subnet_id = aws_subnet.this[0].id
+  route_table_id = aws_route_table.public_rt.id
 }
 
-resource "aws_route_table" "k8s_private_rt" {
-  vpc_id = aws_vpc.k8s_vpc.id
+resource "aws_route_table" "private_rt" {
+  vpc_id = aws_vpc.this.id
 
   route {
     cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.nat_gateway.id
+    gateway_id = aws_nat_gateway.this.id
   }
 
   tags = {
-    Name = "k8s-private-rt"
+    Name = "devops-private-rt"
     Owner = var.owner
   }
 }
 
 resource "aws_route_table_association" "private_asso" {
-  subnet_id = aws_subnet.k8s_subnet[1].id
-  route_table_id = aws_route_table.k8s_private_rt.id
+  subnet_id = aws_subnet.this[1].id
+  route_table_id = aws_route_table.private_rt.id
 }

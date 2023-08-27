@@ -1,5 +1,7 @@
-resource "aws_network_acl" "k8s_nacl" {
-  vpc_id = aws_vpc.k8s_vpc.id
+resource "aws_network_acl" "this" {
+  vpc_id = aws_vpc.this.id
+
+  subnet_ids = aws_subnet.this.subnet_ids
 
   egress {
     protocol   = "all"
@@ -20,13 +22,13 @@ resource "aws_network_acl" "k8s_nacl" {
   }
 
   tags = {
-    Name = "k8s-subnet-nacl"
+    Name = "devops-subnet-nacl"
     Owner = var.owner
   }
 }
 
-resource "aws_network_acl_association" "main" {
-  count = var.subnet_count
-  network_acl_id = aws_network_acl.k8s_nacl.id
-  subnet_id      = aws_subnet.k8s_subnet[count.index].id
-}
+#resource "aws_network_acl_association" "main" {
+#  count = var.subnet_count
+#  network_acl_id = aws_network_acl.k8s_nacl.id
+#  subnet_id      = aws_subnet.k8s_subnet[count.index].id
+#}

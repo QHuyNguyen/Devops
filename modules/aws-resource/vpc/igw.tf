@@ -1,8 +1,8 @@
-resource "aws_internet_gateway" "k8s_igw" {
-  vpc_id = aws_vpc.k8s_vpc.id
+resource "aws_internet_gateway" "this" {
+  vpc_id = aws_vpc.this.id
 
   tags = {
-    Name = "k8s-igw"
+    Name = "devops-igw"
     Owner = var.owner
   }
 }
