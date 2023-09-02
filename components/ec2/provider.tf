@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "arthur-cmd-state-file-bucket"
-    key    = "vpc/instance-terraform.tfstate"
+    key    = "ec2/instance-terraform.tfstate"
     region = "ap-southeast-2"
   }
 }
