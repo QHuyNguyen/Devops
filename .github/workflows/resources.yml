@@ -96,6 +96,8 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
+    environment: production
+    needs: ec2-plan
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
 
@@ -104,11 +106,12 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a set of commands using the runners shell
-      - name: Terraform Init + plan
+      - name: Terraform Init + Apply
         # Assume role from 1 account to do stuff in other accounts
         run: |
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
           cd components/ec2
+          terraform init
           terraform apply -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"
