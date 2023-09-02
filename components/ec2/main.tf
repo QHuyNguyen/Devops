@@ -6,5 +6,5 @@ module "instance" {
   private_ips = var.private_ips
   owner = var.owner
   public_subnet_id = data.aws_subnet.public_subnet_id.id
-  k8s_sg = data.aws_security_group.selected
+  k8s_sg = data.aws_security_group.selected.id
 }
