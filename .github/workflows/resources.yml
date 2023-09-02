@@ -114,4 +114,4 @@ jobs:
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
           cd components/ec2
           terraform init
-          terraform apply -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"
+          terraform apply -var-file="../../accounts/environments/non-prod/ec2/module.tfvars" --auto-approve
