@@ -8,6 +8,6 @@ data "aws_subnet" "public_subnet_id" {
 data "aws_security_group" "selected" {
   filter {
     name   = "tag:Name"
-    values = ["	allow_SSH_HTTP"]
+    values = ["allow_SSH_HTTP"]
   }
 }
