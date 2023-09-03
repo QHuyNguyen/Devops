@@ -88,9 +88,7 @@ jobs:
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
-          cd components/ec2
-          terraform init
-          terraform plan -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"
+          docker-compose run --rm devops-utils sh -c 'cd components/ec2; terraform init; terraform plan -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"'          
 
   ec2-apply:
     # The type of runner that the job will run on
