@@ -1,6 +1,6 @@
 #/bin/bash
 #WORKING_DIR = components/$(COMPONENT)
-WORKING_DIR = components/vpc
+WORKING_DIR = components/ec2
 
 hello:
 	docker-compose run --rm alpine echo 'Hello, World!'
@@ -33,4 +33,4 @@ apply: sts init
 #destroy
 destroy: sts init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform destroy -var-file="module.tfvars" --auto-approve'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file="../../accounts/environments/non-prod/vpc/module.tfvars" --auto-approve'
+	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file="../../accounts/environments/non-prod/ec2/module.tfvars" --auto-approve'
