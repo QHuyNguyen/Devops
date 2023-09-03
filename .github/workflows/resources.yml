@@ -74,6 +74,7 @@ jobs:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
+    needs: vpc-apply
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
 
