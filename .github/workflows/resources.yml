@@ -17,9 +17,9 @@ on:
   workflow_dispatch:
 
 env:
-  ACCESS_KEY_ID: ASIA2QIXXJAZOHFNIIFM
-  SECRET_ACCESS_KEY: sIhr629brY2JQLetw2Hp6LiKFuBZ2YEAig3JoMiN
-  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEGkaDmFwLXNvdXRoZWFzdC0yIkcwRQIgBabqmtElYZP6PyiaFreXwXfyc5/aG3Kq0GdP+YNsuTYCIQCOgzJUKPrHGFyaa7xbvKbQ8Anm95EhedmaynBnDfE2OyqOAwhCEAMaDDcyMjE0MTEzNjk0NiIMo+FObR9a7h2LQtQhKusCGTUFIpgmTOe6qkIe8Jb4GxLSV/pFUZ9qz2sShT+KlveyUUvSQ6YQl0ptaXq+JBLQDvmJNzqRjXvF2uF49S7Oa5+TmZjM9JgZhBUVn7tcZ/KoH0RUlgo+GmA1ndHNXjLLvyY0P0D/81qw/Drs3gozThdHstpoUSKEfKMu1v+6zd9H5EZMwWmRUo+zTSIY6gTnoav3/zmKA4U8/ZGQWVixHwAHfPX3MX8k0JjMsDcR/W0UOwr8rZAzIgbJ4RZ02px0b3xrJZ/Y5SGakwbta69zgbd1L47L4jlTojTxI3GIec9rM+my5AKbpxXAdPinw1c7BnzyZ744vWzfih3btaOliNAvVWiFwFV9lgLVu+67jsAUhiVHDp/zV1aOyPCH4mOL1pIZOy/+G6GLr1FoyhBV6MNjaZUcZy0TdlGG5Hz5L11WsiTqg4CBmNujn25xgtlDXgNQftkOuMkwpBbhlrgsAGFIcAbT3TVLzfLvMKqx1qcGOqYB5bGCkaq3HzHzTq7zPrOlRetj/sd0o3Hmx55uQCo5t8MrY4QPNzxJmQ/hXht3z842IDg+GuyVBazKKU3Tab7vc2v7sOD40nVWrvYhC9LqNfJJCHEYyXIJnvjwLEqpUnH30FXUJvMrMANXKfrnapq6ID6AyCddjZXY7EJThjoNbY5fclvCEVVglj70VTbJykl3q/ZmNvJHTwreJ0LSkNdrfcSAc/8r+w==
+  ACCESS_KEY_ID: ASIA2QIXXJAZMXA7SWN2
+  SECRET_ACCESS_KEY: at+fIzJuNQ39Ouux9DZnJcA+hdzCFWWfcSpGPK6X
+  AWS_SESSION_TOKEN: IQoJb3JpZ2luX2VjEGsaDmFwLXNvdXRoZWFzdC0yIkcwRQIgChez2SEv5HCHkTB3lEG5SJiG84ZMOpOCdYJ250FEFQ8CIQDOtm/sSIKwPbsIqG6ootoS5o2PM+fNASQP4JYhxuGqyyqOAwhEEAMaDDcyMjE0MTEzNjk0NiIMlUvDZeDEWOQy3CV2KusCHTdNB9ObBCCw3VznoJMON+tgeesMQxCRZraBj2bk0YYZsdEGL97/uWuaT9lKmGYMqGrSzDDL4ll2PoAMbJ+qK4u+Ez7Xguh0Z/cdptFRy+Ej94ztNsGzOY7US5ZC7sWiZUKXPJu2k9MMljJkWdMp15AhKZ0hJcZwcdEqFjzu/XedNsB0GffWIHgW03yOQOPLd4zDhbG1xbAzcKE30ylW3rRZDtI63vFBcVrus7tdLRODWbL+fjkMU48UPyZwxsaM1Gak80iOAruZ/tc6RTJTfNn3aVH0zAHMoM/4igAtAxPCiSyV1G17lLdoUV+YpSG2ScVCbS7DyTOZU8ZnnkAUlorkZi5DOAr3LxCpwjOlk+q1paHKHh6qtVBlBp9q7cgbO+mj/MYAqzDzATh5LG279m2KOmeopL35tTLvIGw65Pi/6oYURBBIYdvgJbnT/XumfzNxhuRmlRHRywjD4WgV+hS7wo323dJePNW2MNnm1qcGOqYBGUaY3z47q7C2/FnoyjDilhyMq90LgOvhdI9rXShWFlcfW9j4Fn5HLTOe0O9PfUz43X7MPP9Q0evweqysaZpLsf0CdB+D417Uv856axLd95YMxqVKL7KzNmPHWHupU16V24rdM0Yaj3q46zHTjpLkZ3XqSl+QOuyzdxt8dLKWzu7zt84ury2ADOuoHUv+JxhR95ZcmSMq3M9tQNHq7L+/G0mrmbws8w==
   AWS_EC2_METADATA_DISABLED: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -76,7 +76,7 @@ jobs:
 #    runs-on: ['self-hosted', 'linux', 'x64']
     needs: vpc-apply
     env:
-      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -89,7 +89,7 @@ jobs:
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
-          sudo docker-compose run --rm devops-utils sh -c 'cd components/ec2; terraform init; terraform plan -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"'          
+          sudo docker-compose run --rm devops-utils sh -c 'cd components/runner; terraform init; terraform plan -var-file="../../accounts/environments/non-prod/ec2/module.tfvars"'          
 
   ec2-apply:
     # The type of runner that the job will run on
@@ -98,7 +98,7 @@ jobs:
     environment: production
     needs: ec2-plan
     env:
-      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -111,7 +111,7 @@ jobs:
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
-          cd components/ec2
+          cd components/runner
           terraform init
           terraform apply -var-file="../../accounts/environments/non-prod/ec2/module.tfvars" --auto-approve
   
@@ -122,7 +122,7 @@ jobs:
     environment: production
     needs: ec2-apply
     env:
-      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -135,6 +135,6 @@ jobs:
           export AWS_ACCESS_KEY_ID=${{ env.ACCESS_KEY_ID }}
           export AWS_SECRET_ACCESS_KEY=${{ env.SECRET_ACCESS_KEY }}
           export AWS_SESSION_TOKEN=${{ env.AWS_SESSION_TOKEN }}    
-          cd components/ec2
+          cd components/runner
           terraform init
           terraform destroy -var-file="../../accounts/environments/non-prod/ec2/module.tfvars" --auto-approve

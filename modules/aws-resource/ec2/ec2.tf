@@ -14,13 +14,13 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "runner" {
+resource "aws_instance" "this" {
   count = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
   network_interface {
-    network_interface_id = aws_network_interface.worker_node_eni[count.index].id
+    network_interface_id = aws_network_interface.this[count.index].id
     device_index         = 0
   }
 

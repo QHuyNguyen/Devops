@@ -1,4 +1,4 @@
-module "instance" {
+module "runner" {
   source = "../../modules/aws-resource/ec2"
   instance_count = var.instance_count
   instance_type = var.instance_type
