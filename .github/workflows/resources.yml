@@ -120,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
-    needs: ec2-plan
+    needs: ec2-apply
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
 

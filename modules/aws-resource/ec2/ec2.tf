@@ -1,7 +1,3 @@
-#data "aws_subnet" "selected_subnet" {
-#  id = var.subnet_id
-#}
-
 data "aws_ami" "ubuntu" {
   most_recent = true
 
@@ -18,12 +14,10 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 
-resource "aws_instance" "worker_node" {
+resource "aws_instance" "runner" {
   count = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-#  subnet_id = var.public_subnet_id
-#  subnet_id = data.aws_subnet.selected_subnet.id
 
   network_interface {
     network_interface_id = aws_network_interface.worker_node_eni[count.index].id
@@ -34,4 +28,6 @@ resource "aws_instance" "worker_node" {
     Name = element(var.instance_name, count.index)
     Owner = var.owner
   }
+
+  user_data = file("${path.module}/script.sh")
 }
