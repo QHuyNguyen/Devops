@@ -1,6 +1,6 @@
 #/bin/bash
-#WORKING_DIR = components/$(COMPONENT)
-WORKING_DIR = components/vpc
+WORKING_DIR = components/$(COMPONENT)
+#WORKING_DIR = components/vpc
 
 hello:
 	docker-compose run --rm alpine echo 'Hello, World!'

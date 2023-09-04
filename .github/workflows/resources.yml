@@ -47,15 +47,15 @@ jobs:
 
       - name: Terraform Init
         run: |
-          make init
+          COMPONENT=vpc make init
       
       - name: Terraform Plan
         run: |
-          make plan
+          COMPONENT=vpc make plan
       
       - name: Terraform Show
         run: |
-          make show
+          COMPONENT=vpc make show
 
   vpc-apply:
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Terraform Apply
         run: |      
-          make apply
+          COMPONENT=vpc make apply
 
   ec2-plan:
     # The type of runner that the job will run on
