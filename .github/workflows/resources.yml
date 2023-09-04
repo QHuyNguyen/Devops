@@ -47,15 +47,15 @@ jobs:
 
       - name: Terraform Init
         run: |
-          COMPONENT=vpc make init
+          COMPONENT=${{ matrix.components }} make init
       
       - name: Terraform Plan
         run: |
-          COMPONENT=vpc make plan
+          COMPONENT=${{ matrix.components }} make plan
       
       - name: Terraform Show
         run: |
-          COMPONENT=vpc make show
+          COMPONENT=${{ matrix.components }} make show
 
   vpc-apply:
     runs-on: ubuntu-latest
@@ -64,11 +64,15 @@ jobs:
     needs: vpc-plan
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
+    strategy:
+      matrix:
+        components: ["vpc"]
+
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Apply
         run: |      
-          COMPONENT=vpc make apply
+          COMPONENT=${{ matrix.components }} make apply
 
   ec2-plan:
     # The type of runner that the job will run on
