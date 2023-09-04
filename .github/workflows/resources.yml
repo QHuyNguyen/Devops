@@ -25,7 +25,7 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  vpc-plan:
+  vpc-ec2-plan:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
@@ -57,16 +57,16 @@ jobs:
         run: |
           COMPONENT=${{ matrix.components }} make show
 
-  vpc-apply:
+  vpc-ec2-apply:
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
-    needs: vpc-plan
+    needs: vpc-ec2-plan
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
       matrix:
-        components: ["vpc"]
+        components: ["vpc", "runner"]
 
     steps:
       - uses: actions/checkout@v3
