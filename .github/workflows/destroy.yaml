@@ -28,4 +28,4 @@ jobs:
       - uses: actions/checkout@v3
       - name: Terraform Destroy
         run: |
-          COMPONENT={{ matrix.components }} make destroy
+          COMPONENT=${{ matrix.components }} make destroy
