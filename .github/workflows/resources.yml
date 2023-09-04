@@ -61,7 +61,7 @@ jobs:
     runs-on: ubuntu-latest
 #    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
-    needs: vpc-ec2-plan
+    needs: vpc-plan
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
