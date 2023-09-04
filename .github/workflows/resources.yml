@@ -33,7 +33,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
       matrix:
-        components: ["vpc", "ec2"]
+        components: ["vpc", "runner"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
