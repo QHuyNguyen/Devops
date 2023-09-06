@@ -6,5 +6,5 @@ module "vpc" {
   vpc_name     = var.vpc_name
   owner        = var.owner
   subnet_name  = var.subnet_name
-  tiers = local.tiers
+  tiers = local.tiers.subnet_cidrs
 }
