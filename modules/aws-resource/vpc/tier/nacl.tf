@@ -1,5 +1,5 @@
 resource "aws_network_acl" "this" {
-  vpc_id = aws_vpc.this.id
+  vpc_id = var.vpc_id
 
   subnet_ids = aws_subnet.this.*.id
 
@@ -23,7 +23,7 @@ resource "aws_network_acl" "this" {
 
   tags = {
     Name  = "devops-subnet-nacl"
-    Owner = var.owner
+#    Owner = var.owner
   }
 }
 
