@@ -19,7 +19,7 @@ variable "k8s_sg" {
 }
 
 variable "instance_count" {
-  type = number
+  type    = number
   default = 1
 }
 

@@ -15,7 +15,7 @@ variable "owner" {
 }
 
 variable "subnet_count" {
-  type = number
+  type    = number
   default = 1
 }
 

@@ -19,7 +19,7 @@ variable "owner" {
 }
 
 variable "instance_count" {
-  type = number
+  type    = number
   default = 1
 }
 

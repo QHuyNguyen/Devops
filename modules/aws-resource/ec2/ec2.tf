@@ -15,7 +15,7 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "this" {
-  count = var.instance_count
+  count         = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
 
@@ -25,7 +25,7 @@ resource "aws_instance" "this" {
   }
 
   tags = {
-    Name = element(var.instance_name, count.index)
+    Name  = element(var.instance_name, count.index)
     Owner = var.owner
   }
 

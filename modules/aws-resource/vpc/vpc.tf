@@ -1,11 +1,11 @@
 resource "aws_vpc" "this" {
-  cidr_block = var.vpc_cidr
-  instance_tenancy = "default"
+  cidr_block           = var.vpc_cidr
+  instance_tenancy     = "default"
   enable_dns_hostnames = true
-  enable_dns_support = true
+  enable_dns_support   = true
 
   tags = {
-    Name = var.vpc_name
+    Name  = var.vpc_name
     Owner = var.owner
   }
 }

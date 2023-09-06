@@ -1,3 +1,3 @@
-region = "ap-southeast-2"
+region      = "ap-southeast-2"
 environment = "non-prod"
-owner = "arthur-cmd"
+owner       = "arthur-cmd"
