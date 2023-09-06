@@ -6,4 +6,5 @@ module "tier" {
   subnet_cidr                = var.subnet_cidr
   vpc_name                   = var.vpc_name
   tiers = each.value
+  subnet_name = each.key
 }

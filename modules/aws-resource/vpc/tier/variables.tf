@@ -26,3 +26,7 @@ variable "tiers" {
     subnet_cidrs = list(string)
   })
 }
+
+variable "subnet_name" {
+  type = string
+}
