@@ -5,7 +5,7 @@ resource "aws_subnet" "this" {
   availability_zone = "ap-southeast-2${var.availability_zone_suffixes[count.index]}"
   
   tags = {
-    Name = element(var.subnet_name, count.index)
+    Name = "${var.vpc_name}-subnet-${var.availability_zone_suffixes[count.index]}"
     Owner = "arthur"
   }
 }
