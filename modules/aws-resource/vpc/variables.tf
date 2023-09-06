@@ -28,5 +28,3 @@ variable "availability_zone_suffixes" {
   description = "List of availablity zone suffix"
   default     = ["a", "b", "c"]
 }
-
-variable "aws_region" {}
