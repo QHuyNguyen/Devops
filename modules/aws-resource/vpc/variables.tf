@@ -22,3 +22,11 @@ variable "subnet_count" {
 variable "subnet_name" {
   type = list(string)
 }
+
+variable "availability_zone_suffixes" {
+  type        = list(string)
+  description = "List of availablity zone suffix"
+  default     = ["a", "b", "c"]
+}
+
+variable "aws_region" {}
