@@ -4,4 +4,5 @@ module "tier" {
   vpc_id                     = aws_vpc.this.id
   subnet_cidr                = var.subnet_cidr
   vpc_name                   = var.vpc_name
+  tiers = var.tiers
 }

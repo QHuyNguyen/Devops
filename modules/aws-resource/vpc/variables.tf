@@ -28,3 +28,9 @@ variable "availability_zone_suffixes" {
   description = "List of availablity zone suffix"
   default     = ["a", "b", "c"]
 }
+
+variable "tiers" {
+  type = map(object({
+    subnet_cidrs = list(string)
+  }))
+}

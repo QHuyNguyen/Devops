@@ -22,3 +22,11 @@ variable "subnet_count" {
 variable "subnet_name" {
   type = list(string)
 }
+
+variable "public_cidr_blocks" {
+  type = list(string)
+}
+
+variable "private_cidr_blocks" {
+  type = list(string)
+}
