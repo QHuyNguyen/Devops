@@ -30,7 +30,7 @@ variable "availability_zone_suffixes" {
 }
 
 variable "tiers" {
-  type = map(object({
+  type = object({
     subnet_cidrs = list(string)
-  }))
+  })
 }
