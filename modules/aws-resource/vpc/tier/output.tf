@@ -1,4 +1,4 @@
 output "public_subnet" {
-  value = aws_subnet.this["public_subnet"].id
+  value = aws_subnet.this[0].id
 }
 
