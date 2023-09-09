@@ -94,13 +94,13 @@ jobs:
         run: |
           COMPONENT=${{ matrix.components }} make init
       
-      - name: Terraform Plan
-        run: |
-          COMPONENT=${{ matrix.components }} make plan
-      
-      - name: Terraform Show
-        run: |
-          COMPONENT=${{ matrix.components }} make show
+#      - name: Terraform Plan
+#        run: |
+#          COMPONENT=${{ matrix.components }} make plan
+#      
+#      - name: Terraform Show
+#        run: |
+#          COMPONENT=${{ matrix.components }} make show
 
   ec2-apply:
     # The type of runner that the job will run on
