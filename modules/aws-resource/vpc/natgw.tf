@@ -1,6 +1,6 @@
 resource "aws_nat_gateway" "this" {
   allocation_id = aws_eip.this.id
-  subnet_id = module.tier.subnet_id
+  subnet_id = module.tier.public_subnet
   tags = {
     "Name" = "devops-nat-gateway"
   }
