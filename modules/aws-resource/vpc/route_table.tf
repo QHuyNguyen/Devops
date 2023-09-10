@@ -7,7 +7,7 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name = "devops-public-rt"
+    Name = "${var.vpc_name}-public-rt"
     Owner = var.owner
   }
 }
@@ -26,7 +26,7 @@ resource "aws_route_table" "private_rt" {
   }
 
   tags = {
-    Name = "devops-private-rt"
+    Name = "${var.vpc_name}-private-rt"
     Owner = var.owner
   }
 }
