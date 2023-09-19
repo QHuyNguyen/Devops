@@ -1,7 +1,7 @@
 data "aws_subnet" "public_subnet_id" {
   filter {
     name   = "tag:Name"
-    values = ["devops-vpc-public-subnet-a"]
+    values = ["devops-vpc-public_subnet-a"]
   }
 }
 
