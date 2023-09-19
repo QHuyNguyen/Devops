@@ -83,7 +83,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["runner"]
+        components: ["k8s"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -112,7 +112,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["runner"]
+        components: ["k8s"]
 
     steps:
       - uses: actions/checkout@v3
@@ -130,7 +130,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["runner"]
+        components: ["k8s"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
