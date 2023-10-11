@@ -22,8 +22,8 @@ resource "aws_network_acl" "this" {
   }
 
   tags = {
-    Name  = "devops-subnet-nacl"
-#    Owner = var.owner
+    Name = "devops-subnet-nacl"
+    #    Owner = var.owner
   }
 }
 

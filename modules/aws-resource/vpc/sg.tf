@@ -17,6 +17,13 @@ resource "aws_security_group" "allow_SSH_HTTP" {
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    description = "Self SG"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    self        = true
+  }
   egress {
     from_port   = 0
     to_port     = 0

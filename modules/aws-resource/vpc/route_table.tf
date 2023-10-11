@@ -7,13 +7,13 @@ resource "aws_route_table" "public_rt" {
   }
 
   tags = {
-    Name = "${var.vpc_name}-public-rt"
+    Name  = "${var.vpc_name}-public-rt"
     Owner = var.owner
   }
 }
 
 resource "aws_route_table_association" "public_asso" {
-  subnet_id = module.tier["public_subnet"].subnet_az_a
+  subnet_id      = module.tier["public_subnet"].subnet_az_a
   route_table_id = aws_route_table.public_rt.id
 }
 
@@ -26,12 +26,12 @@ resource "aws_route_table" "private_rt" {
   }
 
   tags = {
-    Name = "${var.vpc_name}-private-rt"
+    Name  = "${var.vpc_name}-private-rt"
     Owner = var.owner
   }
 }
 
 resource "aws_route_table_association" "private_asso" {
-  subnet_id = module.tier["private_subnet"].subnet_az_a
+  subnet_id      = module.tier["private_subnet"].subnet_az_a
   route_table_id = aws_route_table.private_rt.id
 }
