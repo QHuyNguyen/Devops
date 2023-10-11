@@ -29,4 +29,6 @@ resource "aws_instance" "this" {
     Name  = element(var.instance_name, count.index)
     Owner = var.owner
   }
+
+  user_data = file("${path.module}/script.sh")
 }
