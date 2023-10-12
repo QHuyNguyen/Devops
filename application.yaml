@@ -9,7 +9,7 @@ spec:
   source:
     repoURL: https://github.com/QHuyNguyen/Devops.git
     targetRevision: HEAD
-    path: modules
+    path: modules/k8s-resource
   destination:
     server: https://kubernetes.default.svc
     namespace: myapp
