@@ -19,9 +19,9 @@ variable "subnet_count" {
   default = 1
 }
 
-variable "subnet_name" {
-  type = list(string)
-}
+#variable "subnet_name" {
+#  type = list(string)
+#}
 
 variable "availability_zone_suffixes" {
   type        = list(string)
