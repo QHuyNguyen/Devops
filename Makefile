@@ -1,5 +1,6 @@
 #/bin/bash
-WORKING_DIR = components/$(COMPONENT)
+#WORKING_DIR = components/$(COMPONENT)
+WORKING_DIR = components/$(TEMP_COMPONENT)
 #WORKING_DIR = components/vpc
 
 hello:

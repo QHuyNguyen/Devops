@@ -47,7 +47,7 @@ jobs:
 
       - name: Terraform Init
         run: |
-          COMPONENT=${{ matrix.components }} make init
+          TEMP_COMPONENT=test-vpc COMPONENT=${{ matrix.components }} make init
       
       - name: Terraform Plan
         run: |
