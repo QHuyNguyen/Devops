@@ -2,6 +2,11 @@
 #WORKING_DIR = components/$(COMPONENT)
 WORKING_DIR = components/vpc
 #WORKING_DIR = components/vpc
+BACKEND_CONFIG = \
+	-backend-config="bucket=arthur-cmd-state-file-bucket" \
+	-backend-config="encrypt=true" \
+	-backend-config="key=test-vpc/instance-terraform.tfstate" \
+	-backend-config="region=ap-southeast-2"
 
 hello:
 	docker-compose run --rm alpine echo 'Hello, World!'
@@ -16,7 +21,7 @@ sts:
 init: sts
 #	cd environments/non-prod/ap-southeast-2/vpc; terraform init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform init'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
+	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
 
 #plan
 plan: sts init
