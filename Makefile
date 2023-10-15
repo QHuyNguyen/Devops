@@ -3,8 +3,7 @@
 WORKING_DIR = components/vpc
 #WORKING_DIR = components/vpc
 BACKEND_CONFIG = \
-	-backend-config="bucket=arthur-cmd-state-file-bucket" \
-	-backend-config="encrypt=true" \
+	-backend-config="bucket=arthur-cmd-state-file-bucket-2" \
 	-backend-config="key=test-vpc/instance-terraform.tfstate" \
 	-backend-config="region=ap-southeast-2"
 
