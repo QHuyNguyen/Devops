@@ -1,6 +1,6 @@
 #/bin/bash
-#WORKING_DIR = components/$(COMPONENT)
-WORKING_DIR = components/vpc
+WORKING_DIR = components/$(COMPONENT)
+#WORKING_DIR = components/vpc
 #WORKING_DIR = components/vpc
 BACKEND_CONFIG = \
 	-backend-config="bucket=arthur-cmd-state-file-bucket-2" \
