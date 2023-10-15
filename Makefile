@@ -2,11 +2,9 @@
 WORKING_DIR = components/$(COMPONENT)
 #WORKING_DIR = components/vpc
 #WORKING_DIR = components/vpc
-BACKEND_KEY = (COMPONENT)/instance-terraform.tfstate
-
 BACKEND_CONFIG = \
 	-backend-config="bucket=arthur-cmd-state-file-bucket-2" \
-	-backend-config="key=${BACKEND_KEY}" \
+	-backend-config="key=test-vpc/instance-terraform.tfstate" \
 	-backend-config="region=ap-southeast-2"
 
 hello:

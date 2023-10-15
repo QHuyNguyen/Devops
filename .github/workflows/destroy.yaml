@@ -23,7 +23,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
       matrix:
-        components: ["vpc"]
+        components: ["test-vpc"]
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Destroy
