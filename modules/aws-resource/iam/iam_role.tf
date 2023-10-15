@@ -21,7 +21,7 @@ resource "aws_iam_role" "ssm_role" {
 }
 
 data "aws_iam_policy" "AmazonSSMManagedInstanceCore" {
-  arn = "arn:${data.aws_partition.current.partition}:iam::aws:policy/AmazonSSMManagedInstanceCore"
+  arn = "arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore"
 }
 
 resource "aws_iam_role_policy_attachment" "SSM-role-policy-attach" {
