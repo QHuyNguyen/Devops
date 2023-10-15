@@ -1,3 +1,9 @@
+module "instance_role" {
+  source         = "../../modules/aws-resource/iam"
+  owner          = var.owner
+  role_name = var.role_name
+}
+
 module "instance" {
   source         = "../../modules/aws-resource/instance"
   instance_count = var.instance_count

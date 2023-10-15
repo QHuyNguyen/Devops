@@ -74,4 +74,70 @@ jobs:
         run: |      
           COMPONENT=${{ matrix.components }} make apply
 
+  ec2-plan:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+#    runs-on: ['self-hosted', 'linux', 'x64']
+    needs: vpc-apply
+    env:
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
+    strategy:
+      matrix:
+        components: ["k8s"]
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Terraform Init
+        run: |
+          COMPONENT=${{ matrix.components }} make init
+      
+      - name: Terraform Plan
+        run: |
+          COMPONENT=${{ matrix.components }} make plan
+      
+      - name: Terraform Show
+        run: |
+          COMPONENT=${{ matrix.components }} make show
+
+  ec2-apply:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+#    runs-on: ['self-hosted', 'linux', 'x64']
+    environment: production
+    needs: ec2-plan
+    env:
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
+    strategy:
+      matrix:
+        components: ["k8s"]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Terraform Apply
+        run: |      
+          COMPONENT=${{ matrix.components }} make apply
   
+  ec2-destroy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+#    runs-on: ['self-hosted', 'linux', 'x64']
+    environment: production
+    needs: ec2-apply
+    env:
+      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
+    strategy:
+      matrix:
+        components: ["k8s"]
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Runs a set of commands using the runners shell
+      - name: Terraform Init + Destroy
+        # Assume role from 1 account to do stuff in other accounts
+        run: |
+          COMPONENT=${{ matrix.components }} make destroy

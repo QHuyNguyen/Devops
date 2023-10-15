@@ -30,5 +30,5 @@ resource "aws_instance" "this" {
     Owner = var.owner
   }
 
-  user_data = file("${path.module}/k8s-script.sh")
+  #user_data = file("${path.module}/k8s-script.sh")
 }
