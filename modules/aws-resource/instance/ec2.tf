@@ -32,3 +32,8 @@ resource "aws_instance" "this" {
 
   #user_data = file("${path.module}/k8s-script.sh")
 }
+
+resource "aws_iam_instance_profile" "ssm_profile" {
+  name = "test_profile"
+  role = var.ssm_role_arn
+}

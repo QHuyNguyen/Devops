@@ -26,3 +26,7 @@ variable "instance_count" {
 variable "private_ips" {
   type = list(string)
 }
+
+variable "ssm_role_arn" {
+  type = string
+}
