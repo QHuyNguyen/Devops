@@ -34,7 +34,6 @@ variable "private_instance_count" {
 
 variable "private_ips" {
   type = list(string)
-  default = null
 }
 
 variable "ssm_role_name" {
