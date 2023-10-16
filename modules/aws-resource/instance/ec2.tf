@@ -18,12 +18,12 @@ resource "aws_instance" "this" {
   count         = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
-  #subnet_id = var.public_subnet_id
+  subnet_id = var.private_subnet_id
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  network_interface {
-    network_interface_id = aws_network_interface.this[count.index].id
-    device_index         = 0
-  }
+  #network_interface {
+  #  network_interface_id = aws_network_interface.this[count.index].id
+  #  device_index         = 0
+  #}
 
   tags = {
     Name  = element(var.instance_name, count.index)

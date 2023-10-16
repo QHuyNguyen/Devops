@@ -14,6 +14,10 @@ variable "public_subnet_id" {
   type = string
 }
 
+variable "private_subnet_id" {
+  type = string
+}
+
 variable "k8s_sg" {
   type = string
 }
