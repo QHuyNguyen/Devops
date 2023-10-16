@@ -19,7 +19,7 @@ resource "aws_instance" "public_instance" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  security_groups = [var.var.k8s_sg]
+  security_groups = [var.k8s_sg]
   network_interface {
     network_interface_id = aws_network_interface.this[count.index].id
     device_index         = 0
