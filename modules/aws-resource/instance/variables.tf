@@ -4,6 +4,7 @@ variable "instance_type" {
 
 variable "instance_name" {
   type = list(string)
+  default = "test"
 }
 
 variable "owner" {
@@ -22,13 +23,18 @@ variable "k8s_sg" {
   type = string
 }
 
-variable "instance_count" {
+variable "public_instance_count" {
   type    = number
-  default = 1
+  default = 0
+}
+variable "private_instance_count" {
+  type    = number
+  default = 0
 }
 
 variable "private_ips" {
   type = list(string)
+  default = null
 }
 
 variable "ssm_role_name" {

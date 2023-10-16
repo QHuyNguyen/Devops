@@ -18,9 +18,13 @@ variable "owner" {
   type = string
 }
 
-variable "instance_count" {
+variable "public_instance_count" {
   type    = number
-  default = 1
+  default = 0
+}
+variable "private_instance_count" {
+  type    = number
+  default = 0
 }
 
 variable "private_ips" {
