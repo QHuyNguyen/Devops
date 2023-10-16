@@ -30,7 +30,7 @@ resource "aws_instance" "this" {
     Owner = var.owner
   }
 
-  #user_data = file("${path.module}/k8s-script.sh")
+  user_data = file("${path.module}/k8s-script.sh")
 }
 
 resource "aws_iam_instance_profile" "ssm_profile" {
