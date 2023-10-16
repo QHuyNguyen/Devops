@@ -14,5 +14,5 @@ module "instance" {
   #  subnet_id = var.subnet_id
   public_subnet_id = data.aws_subnet.public_subnet_id.id
   k8s_sg           = data.aws_security_group.selected.id
-  ssm_role_arn = module.instance_role.ssm_role
+  ssm_role_name = module.instance_role.ssm_role
 }

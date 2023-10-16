@@ -19,7 +19,7 @@ resource "aws_instance" "this" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   #subnet_id = var.public_subnet_id
-
+  iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   network_interface {
     network_interface_id = aws_network_interface.this[count.index].id
     device_index         = 0
@@ -35,5 +35,5 @@ resource "aws_instance" "this" {
 
 resource "aws_iam_instance_profile" "ssm_profile" {
   name = "test_profile"
-  role = var.ssm_role_arn
+  role = var.ssm_role_name
 }
