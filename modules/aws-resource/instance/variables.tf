@@ -4,7 +4,7 @@ variable "instance_type" {
 
 variable "instance_name" {
   type = list(string)
-  default = "test"
+  default = ["test"]
 }
 
 variable "owner" {
