@@ -11,7 +11,7 @@ module "instance" {
   instance_name  = var.instance_name
   private_ips    = var.private_ips
   owner          = var.owner
-  private_subnet_id = data.aws_subnet.private_subnet_id
+  private_subnet_id = data.aws_subnet.private_subnet_id.id
   #  subnet_id = var.subnet_id
   public_subnet_id = data.aws_subnet.public_subnet_id.id
   k8s_sg           = data.aws_security_group.selected.id
