@@ -15,7 +15,7 @@ resource "aws_eip" "this" {
   count             = var.public_instance_count
   network_interface = aws_network_interface.this[count.index].id
   #  associate_with_private_ip = "10.0.1.50"
-  depends_on = [aws_instance.this]
+  depends_on = [aws_instance.public_instance]
   tags = {
     Name  = join("-", ["pod_eip", count.index])
     Owner = var.owner
