@@ -24,6 +24,12 @@ resource "aws_security_group" "allow_SSH_HTTP" {
     protocol    = "-1"
     self        = true
   }
+  ingress {
+    description = "All Traffic"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+  }
   egress {
     from_port   = 0
     to_port     = 0
