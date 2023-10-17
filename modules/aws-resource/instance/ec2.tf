@@ -15,9 +15,9 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "public_instance" {
-  count         = var.public_instance_count
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
+  count                = var.public_instance_count
+  ami                  = data.aws_ami.ubuntu.id
+  instance_type        = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
   network_interface {
     network_interface_id = aws_network_interface.this[count.index].id
@@ -25,7 +25,7 @@ resource "aws_instance" "public_instance" {
   }
 
   tags = {
-#    Name  = element(var.instance_name, count.index)
+    #    Name  = element(var.instance_name, count.index)
     Owner = var.owner
   }
 
@@ -33,19 +33,19 @@ resource "aws_instance" "public_instance" {
 }
 
 resource "aws_instance" "private_instance" {
-  count         = var.private_instance_count
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = var.instance_type
-  subnet_id = var.private_subnet_id
+  count                = var.private_instance_count
+  ami                  = data.aws_ami.ubuntu.id
+  instance_type        = var.instance_type
+  subnet_id            = var.private_subnet_id
   iam_instance_profile = aws_iam_instance_profile.ssm_profile.name
-  security_groups = [var.k8s_sg]
+  security_groups      = [var.k8s_sg]
   #network_interface {
   #  network_interface_id = aws_network_interface.this[count.index].id
   #  device_index         = 0
   #}
 
   tags = {
-#    Name  = element(var.instance_name, count.index)
+    #    Name  = element(var.instance_name, count.index)
     Owner = var.owner
   }
 

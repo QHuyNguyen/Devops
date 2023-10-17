@@ -3,7 +3,7 @@ variable "instance_type" {
 }
 
 variable "instance_name" {
-  type = list(string)
+  type    = list(string)
   default = ["test"]
 }
 
