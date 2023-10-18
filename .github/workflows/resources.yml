@@ -27,8 +27,8 @@ jobs:
   # This workflow contains a single job called "setup"
   vpc-plan:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+    #runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
@@ -58,8 +58,8 @@ jobs:
           COMPONENT=${{ matrix.components }} make show
 
   vpc-apply:
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+#    runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
     needs: vpc-plan
     env:
@@ -76,8 +76,8 @@ jobs:
 
   ec2-plan:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+#    runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     needs: vpc-apply
     env:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
@@ -104,8 +104,8 @@ jobs:
 
   ec2-apply:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+#    runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
     needs: ec2-plan
     env:
@@ -122,8 +122,8 @@ jobs:
   
   ec2-destroy:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
-#    runs-on: ['self-hosted', 'linux', 'x64']
+#    runs-on: ubuntu-latest
+    runs-on: ['self-hosted', 'linux', 'x64']
     environment: production
     needs: ec2-apply
     env:
