@@ -36,6 +36,9 @@ jobs:
         components: ["test-vpc"]
 
     steps:
+      - name: Home Dir Config
+        run: |
+          sudo chown ubuntu:ubuntu -R /home/ubuntu/actions-runner/_work/
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
