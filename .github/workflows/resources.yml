@@ -34,7 +34,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
       matrix:
-        components: ["vpc"]
+        components: ["test-vpc"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -67,7 +67,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
     strategy:
       matrix:
-        components: ["vpc"]
+        components: ["test-vpc"]
 
     steps:
       - uses: actions/checkout@v3
@@ -84,7 +84,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["k8s"]
+        components: ["runner"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -113,7 +113,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["k8s"]
+        components: ["runner"]
 
     steps:
       - uses: actions/checkout@v3
@@ -131,7 +131,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/ec2
     strategy:
       matrix:
-        components: ["k8s"]
+        components: ["runner"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
