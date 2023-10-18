@@ -72,6 +72,9 @@ jobs:
         components: ["test-vpc"]
 
     steps:
+      - name: Home Dir Config
+        run: |
+          sudo chown ubuntu:ubuntu -R /home/ubuntu/actions-runner/_work/
       - uses: actions/checkout@v3
       - name: Terraform Apply
         run: |      
@@ -89,6 +92,9 @@ jobs:
         components: ["runner"]
 
     steps:
+      - name: Home Dir Config
+        run: |
+          sudo chown ubuntu:ubuntu -R /home/ubuntu/actions-runner/_work/
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
@@ -118,6 +124,9 @@ jobs:
         components: ["runner"]
 
     steps:
+      - name: Home Dir Config
+        run: |
+          sudo chown ubuntu:ubuntu -R /home/ubuntu/actions-runner/_work/
       - uses: actions/checkout@v3
       - name: Terraform Apply
         run: |      
@@ -136,6 +145,9 @@ jobs:
         components: ["runner"]
 
     steps:
+      - name: Home Dir Config
+        run: |
+          sudo chown ubuntu:ubuntu -R /home/ubuntu/actions-runner/_work/
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
