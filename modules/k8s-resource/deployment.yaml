@@ -17,3 +17,21 @@ spec:
         image: docker.io/acantril/containerofcats
         ports:
         - containerPort: 80
+
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: api-service-monitor
+  labels:
+    release: prometheus
+    app: prometheus
+spec:
+  jobLabel: job
+  endpoints:
+  - interval: 30s
+    port: name-of-service-port
+    path: /swagger-stats/metrics
+  selector:
+    matchLabels:
+      app: api
