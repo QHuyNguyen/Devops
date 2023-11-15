@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: test AWS Resource Init/Plan/Apply
+name: VPC/EC2 AWS Resource Init/Plan/Apply
 
-run-name: test Terraform plan/apply on AWS resources 
+run-name: VPC/EC2 Terraform plan/apply on AWS resources 
 
 
 # Controls when the workflow will run
@@ -34,7 +34,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/test-vpc
     strategy:
       matrix:
-        components: ["test-vpc"]
+        components: ["vpc"]
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
@@ -48,7 +48,7 @@ jobs:
 
       - name: Terraform Init
         run: |
-          TEMP_COMPONENT=test-vpc COMPONENT=${{ matrix.components }} make init
+          COMPONENT=${{ matrix.components }} make init
       
       - name: Terraform Plan
         run: |
@@ -67,7 +67,7 @@ jobs:
       TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/test-vpc
     strategy:
       matrix:
-        components: ["test-vpc"]
+        components: ["vpc"]
 
     steps:
       - uses: actions/checkout@v3
