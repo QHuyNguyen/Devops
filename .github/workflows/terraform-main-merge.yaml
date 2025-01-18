@@ -42,8 +42,6 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
           ls -la
-          cd components
-          ls -la
           make sts
       - run: | 
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test
