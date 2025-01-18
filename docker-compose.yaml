@@ -1,7 +1,7 @@
 version: "3.7"
 services:
   devops-utils:
-    platform: linux/x86_64
+    platform: linux/x86_64/v8
     #image: cmdlabs/terraform-utils:11.0.3
     image: arthur210/terraform-runner:1.0.0
     env_file: .env
