@@ -24,11 +24,11 @@ init: sts
 	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
 
 init-test:
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
 plan-test: 
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -var-file=${VAR_FILE}'
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -var-file=${VAR_FILE}'
 apply-test: init-test
-	cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE}
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE}'
 
 #plan
 plan: sts init
