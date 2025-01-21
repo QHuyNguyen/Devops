@@ -45,6 +45,7 @@ jobs:
           make sts
   
   generate-run-plan:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - name: Run make plan
