@@ -58,4 +58,4 @@ jobs:
 
       - name: Display plan output
         run: |
-          echo "${{ steps.plan.outputs.plan }}""
+          echo "${{ steps.plan.outputs.huy }}""
