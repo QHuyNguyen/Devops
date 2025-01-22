@@ -52,11 +52,10 @@ jobs:
         id: plan
         run: | 
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test >> output.plan
-          tail -c 63000 output.plan >> out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
           echo "Terraform Plan :" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
-          cat out.plan >>  $GITHUB_OUTPUT
+
           echo "\`\`\`" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
 
