@@ -52,10 +52,13 @@ jobs:
         id: plan
         run: | 
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test >> output.plan
-          echo "huy<<EOF" >> $GITHUB_OUTPUT
-          cat output.plan >> $GITHUB_OUTPUT
-          echo "EOF" >> $GITHUB_OUTPUT
+          echo 'plan<<EOF' >> $GITHUB_OUTPUT
+          echo "Terraform Plan :" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          cat output.plan >>  $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
 
       - name: Display plan output
         run: |
-          echo "${{ steps.plan.outputs.huy }}""
+          echo "${{ steps.plan.outputs.plan }}""
