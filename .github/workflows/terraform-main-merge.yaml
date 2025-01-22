@@ -52,7 +52,7 @@ jobs:
         id: plan
         run: | 
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test >> output.plan
-          echo "huy=babo" >> $GITHUB_OUTPUT
+          echo "huy=output.plan" >> $GITHUB_OUTPUT
       - name: Display plan output
         run: |
           echo "The plan output ${{ steps.plan.outputs.huy }}"
