@@ -55,8 +55,7 @@ jobs:
           echo "huy<<EOF" >> $GITHUB_OUTPUT
           cat output.plan >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo "huy=output.plan" >> $GITHUB_OUTPUT
+
       - name: Display plan output
         run: |
-          echo "The plan output ${{ steps.plan.outputs.huy }}"
           echo "${{ steps.plan.outputs.plan }}""
