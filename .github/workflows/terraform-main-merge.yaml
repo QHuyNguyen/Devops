@@ -46,7 +46,6 @@ jobs:
   
   generate-run-plan:
     runs-on: ubuntu-latest
-    using: "composite"
     steps:
       - uses: actions/checkout@v3
       - name: Run make plan
