@@ -72,4 +72,4 @@ jobs:
         with:
           GITHUB_TOKEN:  ${{ secrets.github_token }}
           message: |
-            "${{ steps.plan.outputs.plan }}"
+            echo "${{ steps.plan.outputs.plan }}"
