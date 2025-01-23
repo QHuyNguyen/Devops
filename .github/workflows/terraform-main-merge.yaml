@@ -68,7 +68,8 @@ jobs:
     name: An example job to comment a PR
     steps:
       - name: Comment PR
-        uses: thollander/actions-comment-pull-request@v3
+        uses: thollander/actions-comment-pull-request@v2
         with:
+          token: ${{ secrets.GITHUB_TOKEN }}
           message: |
-            echo "${{ steps.plan.outputs.plan }}"
+            "${{ steps.plan.outputs.plan }}"
