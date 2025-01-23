@@ -55,7 +55,7 @@ jobs:
         id: plan
         run: | 
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          echo 'TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc sudo docker compose run --rm devops-utils sh -c "cd components/test-vpc; terraform init"' >> $GITHUB_OUTPUT
+          echo 'ls -la' >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
 
       - name: Display plan output
