@@ -7,10 +7,10 @@ terraform {
   }
 
   backend "s3" {
-    #    bucket = "arthur-cmd-state-file-bucket"
+    bucket = "arthur-mantel-ap-southeast-2-bucket"
     #    key    = "test-vpc/instance-terraform.tfstate"
-    #    key    = "vpc/instance-terraform.tfstate"
-    #    region = "ap-southeast-2"
+    key    = "vpc/instance-terraform.tfstate"
+    region = "ap-southeast-2"
   }
 }
 

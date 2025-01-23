@@ -3,7 +3,8 @@ variable "vpc_cidr" {
 }
 
 variable "subnet_cidr" {
-  type = list(string)
+  type    = list(string)
+  default = [""]
 }
 
 variable "vpc_name" {
@@ -24,9 +25,11 @@ variable "subnet_count" {
 #}
 
 variable "public_cidr_blocks" {
-  type = list(string)
+  type    = list(string)
+  default = [""]
 }
 
 variable "private_cidr_blocks" {
-  type = list(string)
+  type    = list(string)
+  default = [""]
 }
