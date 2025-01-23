@@ -54,8 +54,9 @@ jobs:
       - name: Run make plan
         id: plan
         run: | 
+          ls -la >> out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          echo 'ls -la' >> $GITHUB_OUTPUT
+          cat out.plan >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
 
       - name: Display plan output
