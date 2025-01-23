@@ -62,3 +62,13 @@ jobs:
       - name: Display plan output
         run: |
           echo "${{ steps.plan.outputs.plan }}"
+  
+  example-comment-pr:
+    runs-on: ubuntu-latest
+    name: An example job to comment a PR
+    steps:
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v3
+        with:
+          message: |
+            echo "${{ steps.plan.outputs.plan }}"
