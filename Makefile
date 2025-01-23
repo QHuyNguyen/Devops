@@ -25,7 +25,7 @@ init: sts
 
 init-test:
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
-plan-test: init-test
+plan-test:
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -var-file=${VAR_FILE}'
 apply-test: init-test
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE}'

@@ -48,6 +48,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - name: Terraform Init
+        run: |
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make init-test
       - name: Run make plan
         id: plan
         run: | 
