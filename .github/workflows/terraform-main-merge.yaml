@@ -56,9 +56,29 @@ jobs:
         run: |
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test -out=tfplan >> out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
-          cat out.plan >> $GITHUB_OUTPUT
+          echo ":orange_circle:" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          cat out.plan >>  $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+          echo "no_change=false" >> $GITHUB_OUTPUT
 
       - name: Display plan output
         run: |
           echo "${{ steps.plan.outputs.plan }}"
+      
+      - name: Comment PR
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.plan.outputs.plan }}
+          GITHUB_TOKEN:  ${{ secrets.github_token }}
+  
+  execute-apply:
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
+    steps:
+      - uses: actions/checkout@v3
+      - name: Terraform Apply
+        run: |      
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make apply-test
