@@ -68,6 +68,7 @@ jobs:
           echo "${{ steps.plan.outputs.plan }}"
       
       - name: Comment PR
+        if: ${{ inputs.github_event  == 'pull_request' }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
