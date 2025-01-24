@@ -46,6 +46,7 @@ jobs:
   
   generate-run-plan:
     runs-on: ubuntu-latest
+    if: ${{ inputs.github_event  == 'pull_request' }}
     steps:
       - uses: actions/checkout@v3
       - name: Terraform Init
@@ -68,7 +69,6 @@ jobs:
           echo "${{ steps.plan.outputs.plan }}"
       
       - name: Comment PR
-        if: ${{ inputs.github_event  == 'pull_request' }}
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
