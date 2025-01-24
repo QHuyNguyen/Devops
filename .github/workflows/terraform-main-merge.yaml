@@ -61,6 +61,7 @@ jobs:
           cat out.plan >>  $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
+          echo "no_change=false" >> $GITHUB_OUTPUT
 
       - name: Display plan output
         run: |
