@@ -73,18 +73,15 @@ jobs:
           echo "${{ steps.plan.outputs.plan }}"
       
       - name: Comment PR
-        if: github.event.pull_request.merged == false
+        if: github.event_name == 'pull_request'
         uses: thollander/actions-comment-pull-request@v2
         with:
           message: |
             ${{ steps.plan.outputs.plan }}
           GITHUB_TOKEN:  ${{ secrets.github_token }}
-  
-  execute-apply:
-    runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true
-    steps:
-      - uses: actions/checkout@v3
+      
       - name: Terraform Apply
+        id: apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |      
           TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make apply-test
