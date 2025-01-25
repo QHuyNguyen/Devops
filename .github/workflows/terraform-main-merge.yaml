@@ -7,8 +7,6 @@ on:
   pull_request:
     branches:
       - main
-    types:
-      - closed
 #Defining inputs for manually triggered workflows
   workflow_dispatch:
     inputs:
