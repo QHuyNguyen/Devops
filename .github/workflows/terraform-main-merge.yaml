@@ -59,14 +59,13 @@ jobs:
       - name: Run make plan
         id: plan
         run: |
-          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test -out=tfplan >> out.plan
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test >> out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
           cat out.plan >>  $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
           echo 'EOF' >> $GITHUB_OUTPUT
-          echo "no_change=false" >> $GITHUB_OUTPUT
 
       - name: Display plan output
         run: |
