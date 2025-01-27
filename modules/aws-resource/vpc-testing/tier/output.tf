@@ -1,3 +1,3 @@
 output "subnet_az" {
-  value = aws_subnet.this[0].id
+  value = aws_subnet.this[*].id
 }
