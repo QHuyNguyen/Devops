@@ -13,6 +13,7 @@ resource "aws_route_table" "public_rt" {
 }
 
 resource "aws_route_table_association" "public_asso" {
-  subnet_id      = module.tier["public_subnet"].subnet_az
+  count = 3
+  subnet_id      = module.tier["public_subnet"].subnet_az[count.index]
   route_table_id = aws_route_table.public_rt.id
 }
