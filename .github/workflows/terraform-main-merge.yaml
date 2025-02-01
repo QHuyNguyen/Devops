@@ -107,3 +107,8 @@ jobs:
           message: |
             ${{ steps.plan.outputs.plan }}
           GITHUB_TOKEN:  ${{ secrets.github_token }}
+      - name: Run identity make apply
+        id: apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |      
+          TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make apply-test
