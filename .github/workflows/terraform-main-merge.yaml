@@ -90,3 +90,18 @@ jobs:
       - name: Run identity make init
         run: |
           TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make init-test
+      - name: Run identity make plan
+        id: plan
+        run: |
+          TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make plan-test >> out.plan
+          echo 'plan<<AOE' >> $GITHUB_OUTPUT
+          echo ":orange_circle:" >> $GITHUB_OUTPUT
+          cat out.plan >> $GITHUB_OUTPUT
+          echo 'AOE' >> $GITHUB_OUTPUT
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.plan.outputs.plan }}
+          GITHUB_TOKEN:  ${{ secrets.github_token }}
