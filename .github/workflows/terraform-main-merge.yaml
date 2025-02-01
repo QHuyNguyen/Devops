@@ -96,7 +96,9 @@ jobs:
           TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make plan-test >> out.plan
           echo 'plan<<AOE' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
           cat out.plan >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
           echo 'AOE' >> $GITHUB_OUTPUT
       - name: Comment PR
         if: github.event_name == 'pull_request'
