@@ -44,17 +44,20 @@ jobs:
           ls -la
           make sts
   
-  generate-run-plan:
+  generate-network-run-plan:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: ["test-vpc"]
     steps:
       - uses: actions/checkout@v3
-      - name: Terraform Init
+      - name: Run make init
         run: |
-          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make init-test
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=${{ matrix.component }} make init-test
       - name: Run make plan
         id: plan
         run: |
-          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make plan-test >> out.plan
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=${{ matrix.component }} make plan-test >> out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
@@ -78,4 +81,34 @@ jobs:
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |      
-          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=test-vpc make apply-test
+          TYPE=infrastructure AWS_ACCOUNT_NAME=network COMPONENT=${{ matrix.component }} make apply-test
+  
+  generate-identity-plan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run identity make init
+        run: |
+          TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make init-test
+      - name: Run identity make plan
+        id: plan
+        run: |
+          TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make plan-test >> out.plan
+          echo 'plan<<AOE' >> $GITHUB_OUTPUT
+          echo ":orange_circle:" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          cat out.plan >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo 'AOE' >> $GITHUB_OUTPUT
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.plan.outputs.plan }}
+          GITHUB_TOKEN:  ${{ secrets.github_token }}
+      - name: Run identity make apply
+        id: apply
+        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+        run: |      
+          TYPE=infrastructure AWS_ACCOUNT_NAME=identity COMPONENT=session-manager make apply-test
