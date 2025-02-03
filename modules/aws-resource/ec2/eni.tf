@@ -1,7 +1,7 @@
 resource "aws_network_interface" "this" {
   count           = var.instance_count
   subnet_id       = var.public_subnet_id
-  private_ips     = [var.private_ips[count.index]]
+  #private_ips     = [var.private_ips[count.index]]
   security_groups = [var.k8s_sg]
 
   tags = {
