@@ -115,6 +115,7 @@ jobs:
   
   generate-workload-ansible-plan:
     runs-on: ubuntu-latest
+    needs: generate-identity-plan
     steps:
       - uses: actions/checkout@v3
       - name: Run ansible make init
