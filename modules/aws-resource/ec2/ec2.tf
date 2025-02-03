@@ -18,6 +18,7 @@ resource "aws_instance" "this" {
   count         = var.instance_count
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
+  iam_instance_profile = var.ssm_role_name
 
   network_interface {
     network_interface_id = aws_network_interface.this[count.index].id
@@ -29,5 +30,5 @@ resource "aws_instance" "this" {
     Owner = var.owner
   }
 
-  user_data = file("${path.module}/script.sh")
+  #user_data = file("${path.module}/script.sh")
 }
