@@ -5,4 +5,4 @@ public_subnet_id = "subnet-0fe03e119e592e7d6"
 k8s_sg = "sg-0f65e2adfeaaa01a1"
 instance_count = 1
 private_ips = ["10.0.0.1"]
-ssm_role_name = "arn:aws:iam::722141136946:role/ssm-arthur"
+role_name = "ssm-arthur"

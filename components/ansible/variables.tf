@@ -31,3 +31,7 @@ variable "ssm_role_name" {
   type = string
   default = "null"
 }
+
+variable "role_name" {
+  type = string
+}
