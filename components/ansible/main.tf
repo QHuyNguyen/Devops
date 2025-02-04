@@ -7,5 +7,5 @@ module "ansible" {
   k8s_sg = var.k8s_sg
   instance_count = var.instance_count
   private_ips = var.private_ips
-  ssm_role_name = var.ssm_role_name
+  ssm_role_name = module.identity.ssm_role
 }
