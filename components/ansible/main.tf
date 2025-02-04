@@ -1,3 +1,9 @@
+module "identity" {
+  source = "../../modules/aws-resource/iam"
+  owner = var.owner
+  role_name = var.role_name
+}
+
 module "ansible" {
   source = "../../modules/aws-resource/ec2"
   instance_type = var.instance_type

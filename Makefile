@@ -25,10 +25,12 @@ init: sts
 
 init-test:
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
-plan-test:
+plan-test: init-test
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -no-color -var-file=${VAR_FILE}'
 apply-test: init-test
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE} --auto-approve'
+destroy-test: init-test
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file=${VAR_FILE} --auto-approve'
 
 #plan
 plan: sts init
