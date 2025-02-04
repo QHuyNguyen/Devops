@@ -29,5 +29,4 @@ variable "private_ips" {
 
 variable "ssm_role_name" {
   type = string
-  default = "value"
 }
