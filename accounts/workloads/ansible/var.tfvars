@@ -6,3 +6,5 @@ k8s_sg = "sg-0f65e2adfeaaa01a1"
 instance_count = 1
 private_ips = ["10.0.0.1"]
 role_name = "ssm-arthur"
+apply_script = true
+script_path = "../../../../userdata/ansible"
