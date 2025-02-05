@@ -33,7 +33,6 @@ variable "ssm_role_name" {
 
 variable "apply_script" {
   type = bool
-  default = false
 }
 
 variable "script_path" {

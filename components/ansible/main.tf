@@ -15,5 +15,5 @@ module "ansible" {
   private_ips = var.private_ips
   ssm_role_name = module.identity.ssm_role
   apply_script = var.apply_script
-  script_path = "${var.apply_script}/script.sh"
+  script_path = var.script_path
 }
