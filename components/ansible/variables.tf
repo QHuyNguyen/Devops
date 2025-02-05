@@ -30,3 +30,13 @@ variable "private_ips" {
 variable "role_name" {
   type = string
 }
+
+variable "apply_script" {
+  type = bool
+  default = false
+}
+
+variable "script_path" {
+  type = string
+  default = ""
+}
