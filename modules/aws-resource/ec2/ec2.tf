@@ -30,7 +30,8 @@ resource "aws_instance" "this" {
     Owner = var.owner
   }
 
-  user_data = var.apply_script ? var.script_path : null
+  #user_data = var.apply_script ? file("${var.script_path}") : null
+  user_data = var.apply_script ? file("${path.module}/${var.script_path}") : null
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
