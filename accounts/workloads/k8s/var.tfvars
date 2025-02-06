@@ -8,3 +8,4 @@ private_ips = ["10.0.0.2"]
 role_name = "ssm-arthur"
 apply_script = false
 script_path = ""
+instance_profile_name = "test-profile-2"
