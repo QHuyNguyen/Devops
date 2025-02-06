@@ -8,3 +8,4 @@ private_ips = ["10.0.0.1"]
 role_name = "ssm-arthur"
 apply_script = true
 script_path = "userdata/ansible/script.sh"
+instance_profile_name = "test-profile-1"
