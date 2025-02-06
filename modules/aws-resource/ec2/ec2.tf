@@ -29,12 +29,11 @@ resource "aws_instance" "this" {
     Name  = element(var.instance_name, count.index)
     Owner = var.owner
   }
-
-  #user_data = var.apply_script ? file("${var.script_path}") : null
+  
   user_data = var.apply_script ? file("${path.module}/${var.script_path}") : null
 }
 
 resource "aws_iam_instance_profile" "test_profile" {
-  name = "test_profile"
+  name = var.instance_profile_name # FIRST THING TO DO TMR IS TO DELETE MASTER NODE INSTANCE THEN CREATE VARIABLE FOR INSTANCE PROFILE NAME
   role = var.ssm_role_name
 }

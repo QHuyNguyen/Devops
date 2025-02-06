@@ -39,3 +39,7 @@ variable "script_path" {
   type = string
   default = ""
 }
+
+variable "instance_profile_name" {
+  type = string
+}
