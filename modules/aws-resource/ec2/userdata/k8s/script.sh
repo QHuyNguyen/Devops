@@ -57,7 +57,7 @@ sudo sysctl --system
 #Initialise control-plane node
 #* --pod-network-cidr: Subnet for for your pod (pod network)
 #* —apiserver-advertise-address: tell cluster what IP address is going to be for kube API Server (IP Add of master node)
-#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.1.102 --upload-certs
+#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.0.16 --upload-certs
 
 #To use your cluster:
 #mkdir -p $HOME/.kube

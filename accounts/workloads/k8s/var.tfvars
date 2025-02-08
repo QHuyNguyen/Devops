@@ -1,4 +1,4 @@
-instance_type = "t3.micro"
+instance_type = "t2.medium"
 instance_name = ["arthur-test-master-node"]
 owner = "arthur"
 public_subnet_id = "subnet-0fe03e119e592e7d6"
