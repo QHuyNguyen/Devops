@@ -4,6 +4,7 @@
 
 #1. Installing kubeadm, kubelet and kubectl
 
+#Download the public signing key for the Kubernetes package repositories
 curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.32/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
 #Note:
 #* In releases older than Debian 12 and Ubuntu 22.04, directory /etc/apt/keyrings does not exist by default, and it should be created before the curl command. 
@@ -57,7 +58,7 @@ sudo sysctl --system
 #Initialise control-plane node
 #* --pod-network-cidr: Subnet for for your pod (pod network)
 #* —apiserver-advertise-address: tell cluster what IP address is going to be for kube API Server (IP Add of master node)
-#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.0.16 --upload-certs
+#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.1.222 --upload-certs
 
 #To use your cluster:
 #mkdir -p $HOME/.kube
@@ -67,6 +68,7 @@ sudo sysctl --system
 #Set up network plugin to allow master node status to be ready, by deploying a pod network to cluster
 #* Use weave
 #* https://github.com/rajch/weave?tab=readme-ov-file#using-weave-on-kubernetes
+#* kubectl apply -f https://reweave.azurewebsites.net/k8s/v1.29/net.yaml
 
 #Join other worker node using
 #kubeadm join 10.0.0.68:6443 --token pkb5bs.br7sstdzj6bufz9y \
