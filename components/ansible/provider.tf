@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "arthur-mantel-ap-southeast-2-bucket"
-    key    = "ansible/instance-terraform.tfstate"
+    key    = "workloads/ansible/instance-terraform.tfstate"
     region = "ap-southeast-2"
   }
 }

@@ -1,11 +1,11 @@
 #/bin/bash
 WORKING_DIR = components/${COMPONENT}
 VAR_FILE = "../../accounts/${TYPE}/${AWS_ACCOUNT_NAME}/var.tfvars"
-#BACKEND_KEY = $(COMPONENT)/instance-terraform.tfstate
+BACKEND_KEY = "${TYPE}/${COMPONENT}/instance-terraform.tfstate"
 
 BACKEND_CONFIG = \
-	-backend-config="bucket=arthur-cmd-state-file-bucket" \
-	-backend-config="key=${COMPONENT}/instance-terraform.tfstate" \
+	-backend-config="bucket=arthur-mantel-ap-southeast-2-bucket" \
+	-backend-config="key=${BACKEND_KEY}" \
 	-backend-config="region=ap-southeast-2"
 
 hello:
@@ -24,7 +24,7 @@ init: sts
 	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
 
 init-test:
-	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init'
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
 plan-test: init-test
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -no-color -var-file=${VAR_FILE}'
 apply-test: init-test

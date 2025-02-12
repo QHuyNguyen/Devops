@@ -1,11 +1,11 @@
 instance_type = "t2.medium"
 instance_name = ["arthur-test-master-node"]
 owner = "arthur"
-public_subnet_id = "subnet-0fe03e119e592e7d6"
-k8s_sg = "sg-0f65e2adfeaaa01a1"
+public_subnet_id = "subnet-087204a79484c043e"
+k8s_sg = "sg-0119c90f34a2363d4"
 instance_count = 1
 private_ips = ["10.0.0.2"]
 role_name = "ssm-arthur"
-apply_script = true
-script_path = "userdata/k8s/script.sh"
+apply_script = false
+script_path = ""
 instance_profile_name = "test-profile-2"
