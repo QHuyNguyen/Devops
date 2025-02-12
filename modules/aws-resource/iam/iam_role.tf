@@ -28,3 +28,12 @@ resource "aws_iam_role_policy_attachment" "SSM-role-policy-attach" {
   role       = aws_iam_role.ssm_role.name
   policy_arn = data.aws_iam_policy.AmazonSSMManagedInstanceCore.arn
 }
+
+data "aws_iam_policy" "AmazonS3FullAccess" {
+  arn = "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+}
+
+resource "aws_iam_role_policy_attachment" "S3-role-policy-attach" {
+  role       = aws_iam_role.ssm_role.name
+  policy_arn = data.aws_iam_policy.AmazonS3FullAccess.arn
+}
