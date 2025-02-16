@@ -1,10 +1,10 @@
 instance_type = "t2.medium"
-instance_name = ["arthur-test-master-node"]
+instance_name = ["arthur-test-master-node", "arthur-test-worker-node-01"]
 owner = "arthur"
 public_subnet_id = "subnet-087204a79484c043e"
 k8s_sg = "sg-0119c90f34a2363d4"
-instance_count = 1
-private_ips = ["10.0.0.2"]
+instance_count = 2
+private_ips = ["10.0.0.2", "10.0.0.3"]
 role_name = "ssm-arthur"
 apply_script = false
 script_path = ""
