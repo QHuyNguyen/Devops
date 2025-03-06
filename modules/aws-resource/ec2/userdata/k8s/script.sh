@@ -73,3 +73,5 @@ sudo sysctl --system
 #Join other worker node using
 #kubeadm join 10.0.0.68:6443 --token pkb5bs.br7sstdzj6bufz9y \
 #        --discovery-token-ca-cert-hash sha256:ee11a4814a684094504fe1960896078bc8cdbcaa8292cdb9eef99bb8b40f6d00
+#Retrieve kubeadm join command
+#kubeadm token create --print-join-command
