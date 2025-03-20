@@ -75,3 +75,13 @@ sudo sysctl --system
 #        --discovery-token-ca-cert-hash sha256:ee11a4814a684094504fe1960896078bc8cdbcaa8292cdb9eef99bb8b40f6d00
 #Retrieve kubeadm join command
 #kubeadm token create --print-join-command
+
+#Apply metrics-server
+#kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+#update metrics-server deployment by adding new option in args
+#args:
+#- --cert-dir=/tmp
+#- --secure-port=4443
+#- --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
+#- --kubelet-use-node-status-port
+#- --kubelet-insecure-tls
