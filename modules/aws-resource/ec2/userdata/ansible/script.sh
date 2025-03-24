@@ -7,7 +7,12 @@ curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip
 unzip awscliv2.zip
 sudo rm -rf awscliv2.zip
 sudo ./aws/install
+
+sudo touch $HOME/testfile
+
 sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/zip/ansible_k8s-master.zip $HOME
 sudo unzip ansible_k8s-master.zip
 sudo rm -rf ansible_k8s-master.zip
 ssh-keygen -f $HOME/.ssh/id_ed25519 -t ed25519 -N ''
+#sudo vi ~/.ssh/authorized_keys
+#sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates.zip $HOME
