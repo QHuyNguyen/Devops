@@ -1,9 +1,9 @@
 instance_type = "t3.small"
-instance_name = ["arthur-test-master-node", "arthur-test-worker-node-01"]
+instance_name = ["arthur-test-master-node", "arthur-test-worker-node-01", "arthur-test-worker-node-02"]
 owner = "arthur"
 public_subnet_id = "subnet-087204a79484c043e"
 k8s_sg = "sg-0119c90f34a2363d4"
-instance_count = 2
+instance_count = 3
 private_ips = ["10.0.0.2", "10.0.0.3"]
 role_name = "ssm-arthur"
 apply_script = true
