@@ -85,3 +85,17 @@ sudo sysctl --system
 #- --kubelet-preferred-address-types=InternalIP,ExternalIP,Hostname
 #- --kubelet-use-node-status-port
 #- --kubelet-insecure-tls
+
+#Give ec2 instance role permision to add ec2:CreateVolume
+#Policy name: AmazonEBSCSIDriverPolicy
+
+#Install AWS EBS CSI Driver using helm
+#sudo snap install helm --classic
+
+#Add the EBS CSI Driver Helm repository
+#helm repo add aws-ebs-csi-driver \
+#     https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+
+#deploy the driver
+#helm install aws-ebs-csi-driver \
+#    aws-ebs-csi-driver/aws-ebs-csi-driver
