@@ -1,4 +1,4 @@
-instance_type = "t3.small"
+instance_type = "t3.medium"
 instance_name = ["arthur-test-master-node", "arthur-test-worker-node-01", "arthur-test-worker-node-02"]
 owner = "arthur"
 public_subnet_id = "subnet-087204a79484c043e"

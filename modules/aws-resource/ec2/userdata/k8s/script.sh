@@ -93,9 +93,7 @@ sudo sysctl --system
 #sudo snap install helm --classic
 
 #Add the EBS CSI Driver Helm repository
-#helm repo add aws-ebs-csi-driver \
-#     https://kubernetes-sigs.github.io/aws-ebs-csi-driver
+#helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
 
 #deploy the driver
-#helm install aws-ebs-csi-driver \
-#    aws-ebs-csi-driver/aws-ebs-csi-driver
+#helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
