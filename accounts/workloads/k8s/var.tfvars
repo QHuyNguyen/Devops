@@ -1,8 +1,8 @@
 instance_type = "t3.medium"
 instance_name = ["arthur-test-master-node", "arthur-test-worker-node-01", "arthur-test-worker-node-02"]
 owner = "arthur"
-public_subnet_id = "subnet-087204a79484c043e"
-k8s_sg = "sg-0119c90f34a2363d4"
+public_subnet_id = "subnet-0f059b008ff0cbe3d"
+k8s_sg = "sg-0465a2b9cd53c691b"
 instance_count = 3
 private_ips = ["10.0.0.2", "10.0.0.3"]
 role_name = "ssm-arthur"
