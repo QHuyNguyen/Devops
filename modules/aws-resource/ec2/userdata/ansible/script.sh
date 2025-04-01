@@ -11,7 +11,7 @@ sudo ./aws/install
 cd /home/ssm-user/
 sudo touch testfile
 
-sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/zip/ansible_k8s-master.zip .
+sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/ansible/ansible_k8s-master.zip .
 sudo unzip ansible_k8s-master.zip
 sudo rm -rf ansible_k8s-master.zip
 ssh-keygen -f $HOME/.ssh/id_ed25519 -t ed25519 -N ''
@@ -19,6 +19,8 @@ ssh-keygen -f $HOME/.ssh/id_ed25519 -t ed25519 -N ''
 #sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates.zip $HOME
 
 #aws s3 cp . s3://arthur-mantel-ap-southeast-2-bucket/blog/mysql/ --recursive
+
+#aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/blog/ . --recursive
 
 
 #TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=session-manager make plan-test
