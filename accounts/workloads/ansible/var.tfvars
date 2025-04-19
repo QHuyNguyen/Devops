@@ -1,8 +1,8 @@
 instance_type = "t3.micro"
 instance_name = ["arthur-test-ansible"]
 owner = "arthur"
-public_subnet_id = "subnet-06ea1f2042ed50645"
-k8s_sg = "sg-0b9ffaf8d1e2afe89"
+#public_subnet_id = "subnet-06ea1f2042ed50645"
+#k8s_sg = "sg-0b9ffaf8d1e2afe89"
 instance_count = 1
 private_ips = ["10.0.0.1"]
 role_name = "ssm-arthur"
