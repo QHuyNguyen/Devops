@@ -12,10 +12,12 @@ variable "owner" {
 
 variable "public_subnet_id" {
   type = string
+  default = ""
 }
 
 variable "k8s_sg" {
   type = string
+  default = ""
 }
 
 variable "instance_count" {
