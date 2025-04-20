@@ -97,3 +97,5 @@ sudo sysctl --system
 
 #deploy the driver
 #helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+
+#sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates.zip $HOME
