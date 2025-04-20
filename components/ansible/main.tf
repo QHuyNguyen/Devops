@@ -13,8 +13,8 @@ module "ansible" {
   instance_type = var.instance_type
   instance_name = var.instance_name
   owner = var.owner
-  public_subnet_id = data.aws_subnet.selected
-  k8s_sg = data.aws_security_group.selected
+  public_subnet_id = data.aws_subnet.selected.id
+  k8s_sg = data.aws_security_group.selected.id
   instance_count = var.instance_count
   private_ips = var.private_ips
   ssm_role_name = data.aws_iam_role.ssm_role.name
