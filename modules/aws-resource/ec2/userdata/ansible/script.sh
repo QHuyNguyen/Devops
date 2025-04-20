@@ -9,14 +9,13 @@ sudo rm -rf awscliv2.zip
 sudo ./aws/install
 
 cd /home/ssm-user/
-sudo touch testfile
 
 sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/ansible/ansible_k8s-master.zip .
 sudo unzip ansible_k8s-master.zip
 sudo rm -rf ansible_k8s-master.zip
 ssh-keygen -f $HOME/.ssh/id_ed25519 -t ed25519 -N ''
 #sudo vi ~/.ssh/authorized_keys
-#sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates.zip $HOME
+
 
 #aws s3 cp . s3://arthur-mantel-ap-southeast-2-bucket/blog/mysql/ --recursive
 
