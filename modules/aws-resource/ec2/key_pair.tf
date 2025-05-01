@@ -4,7 +4,7 @@ resource "tls_private_key" "ed25519-key" {
 
 resource "aws_key_pair" "this" {
   key_name   = "cluster-key"
-  public_key = public_key = trimspace(tls_private_key.ed25519-key.public_key_openssh)
+  public_key = trimspace(tls_private_key.ed25519-key.public_key_openssh)
 }
 
 resource "local_sensitive_file" "this" {
