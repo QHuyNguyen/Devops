@@ -58,7 +58,7 @@ sudo sysctl --system
 #Initialise control-plane node
 #* --pod-network-cidr: Subnet for for your pod (pod network)
 #* —apiserver-advertise-address: tell cluster what IP address is going to be for kube API Server (IP Add of master node)
-#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.0.53 --upload-certs
+#sudo kubeadm init --pod-network-cidr=10.244.0.0/16 --apiserver-advertise-address=10.0.0.11 --upload-certs
 
 #To use your cluster:
 #mkdir -p $HOME/.kube
@@ -98,4 +98,4 @@ sudo sysctl --system
 #deploy the driver
 #helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
 
-#sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates.zip $HOME
+#sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates-master.zip $HOME
