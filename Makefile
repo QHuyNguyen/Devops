@@ -4,7 +4,7 @@ VAR_FILE = "../../accounts/${TYPE}/${AWS_ACCOUNT_NAME}/var.tfvars"
 BACKEND_KEY = "${TYPE}/${COMPONENT}/instance-terraform.tfstate"
 
 BACKEND_CONFIG = \
-	-backend-config="bucket=devops-blog-arthur-210" \
+	-backend-config="bucket=devops-blog-arthur-200" \
 	-backend-config="key=${BACKEND_KEY}" \
 	-backend-config="region=ap-southeast-2"
 
