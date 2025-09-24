@@ -128,33 +128,33 @@ jobs:
   #      run: |      
   #        TYPE=workloads AWS_ACCOUNT_NAME=ansible COMPONENT=ansible make apply-test
 
-  generate-master-node-plan:
-    runs-on: ubuntu-latest
-    needs: generate-identity-ssm-plan
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run master node make init
-        run: |
-          TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make init-test
-      - name: Run ansible make plan
-        id: plan
-        run: |
-          TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make plan-test >> out.plan
-          echo 'plan<<AOE' >> $GITHUB_OUTPUT
-          echo ":orange_circle:" >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          cat out.plan >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          echo 'AOE' >> $GITHUB_OUTPUT
-      - name: Comment PR
-        if: github.event_name == 'pull_request'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ${{ steps.plan.outputs.plan }}
-          GITHUB_TOKEN:  ${{ secrets.github_token }}
-      - name: Run master node make apply
-        id: apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |      
-          TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make apply-test
+  #generate-master-node-plan:
+  #  runs-on: ubuntu-latest
+  #  needs: generate-identity-ssm-plan
+  #  steps:
+  #    - uses: actions/checkout@v3
+  #    - name: Run master node make init
+  #      run: |
+  #        TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make init-test
+  #    - name: Run ansible make plan
+  #      id: plan
+  #      run: |
+  #        TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make plan-test >> out.plan
+  #        echo 'plan<<AOE' >> $GITHUB_OUTPUT
+  #        echo ":orange_circle:" >> $GITHUB_OUTPUT
+  #        echo "\`\`\`" >> $GITHUB_OUTPUT
+  #        cat out.plan >> $GITHUB_OUTPUT
+  #        echo "\`\`\`" >> $GITHUB_OUTPUT
+  #        echo 'AOE' >> $GITHUB_OUTPUT
+  #    - name: Comment PR
+  #      if: github.event_name == 'pull_request'
+  #      uses: thollander/actions-comment-pull-request@v2
+  #      with:
+  #        message: |
+  #          ${{ steps.plan.outputs.plan }}
+  #        GITHUB_TOKEN:  ${{ secrets.github_token }}
+  #    - name: Run master node make apply
+  #      id: apply
+  #      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #      run: |      
+  #        TYPE=workloads AWS_ACCOUNT_NAME=k8s COMPONENT=test-k8s make apply-test
