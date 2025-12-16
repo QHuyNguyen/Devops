@@ -1,10 +1,11 @@
 #/bin/bash
 WORKING_DIR = components/${COMPONENT}
-VAR_FILE = "../../accounts/${TYPE}/${AWS_ACCOUNT_NAME}/var.tfvars"
-BACKEND_KEY = "${TYPE}/${COMPONENT}/instance-terraform.tfstate"
+VAR_FILE = "../../accounts/${ACCOUNT_GROUP}/${ACCOUNT_DOMAIN}/var.tfvars"
+BACKEND_KEY = "${ACCOUNT_GROUP}/${COMPONENT}/instance-terraform.tfstate"
+BACKEND_BUCKET = devops-blog-arthur-200
 
 BACKEND_CONFIG = \
-	-backend-config="bucket=devops-blog-arthur-200" \
+	-backend-config="bucket=${BACKEND_BUCKET}" \
 	-backend-config="key=${BACKEND_KEY}" \
 	-backend-config="region=ap-southeast-2"
 
@@ -21,31 +22,14 @@ sts:
 init: sts
 #	cd environments/non-prod/ap-southeast-2/vpc; terraform init
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform init'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
-
-init-test:
 	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform init ${BACKEND_CONFIG}'
-plan-test: init-test
-	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -no-color -var-file=${VAR_FILE}'
-apply-test: init-test
-	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE} --auto-approve'
-destroy-test: init-test
-	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file=${VAR_FILE} --auto-approve'
 
-#plan
 plan: sts init
-#	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform plan -var-file="module.tfvars"'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -var-file="../../accounts/environments/non-prod/$(COMPONENT)/module.tfvars"'
-
-#show
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform plan -no-color -var-file=${VAR_FILE}'
+apply: sts init
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file=${VAR_FILE} --auto-approve'
+destroy: sts init
+	sudo docker compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file=${VAR_FILE} --auto-approve'
 show: sts init plan
 #	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform show'
 	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform show'
-#apply
-apply: sts init
-#	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform apply -var-file="module.tfvars" --auto-approve'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform apply -var-file="../../accounts/environments/non-prod/$(COMPONENT)/module.tfvars" --auto-approve'
-#destroy
-destroy: sts init
-#	sudo docker-compose run --rm devops-utils sh -c 'cd environments/non-prod/ap-southeast-2/vpc; terraform destroy -var-file="module.tfvars" --auto-approve'
-	sudo docker-compose run --rm devops-utils sh -c 'cd ${WORKING_DIR}; terraform destroy -var-file="../../accounts/environments/non-prod/$(COMPONENT)/module.tfvars" --auto-approve'
