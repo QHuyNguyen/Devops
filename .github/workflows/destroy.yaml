@@ -9,6 +9,19 @@ run-name: Run Terraform destroy on k8s resources
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  inputs:
+      account_group:
+        description: "Account group (e.g. infrastructure)"
+        required: true
+        type: string
+      account_domain:
+        description: "Account domain (e.g. identity)"
+        required: true
+        type: string
+      component:
+        description: "Component name (e.g. session-manager)"
+        required: true
+        type: string
 
 env:
   AWS_EC2_METADATA_DISABLED: true
@@ -16,16 +29,28 @@ env:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "setup"
-  vpc-ec2-destroy:
+#  vpc-ec2-destroy:
+#    runs-on: ubuntu-latest
+#    environment: production
+#    env:
+#      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
+#    strategy:
+#      matrix:
+#        components: ["test-vpc"]
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Terraform Destroy
+#        run: |
+#          COMPONENT=${{ matrix.components }} make destroy
+
+  destroy:
     runs-on: ubuntu-latest
-    environment: production
-    env:
-      TERRAFORM_ROOT_MODULE: accounts/environments/non-prod/vpc
-    strategy:
-      matrix:
-        components: ["test-vpc"]
     steps:
       - uses: actions/checkout@v3
-      - name: Terraform Destroy
+      - name: Run make init
         run: |
-          COMPONENT=${{ matrix.components }} make destroy
+          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=session-manager make init
+      - name: Run ansible make apply
+        id: destroy
+        run: |      
+          ACCOUNT_GROUP=${{ inputs.account_group }} ACCOUNT_DOMAIN=${{ inputs.account_domain }} COMPONENT=${{ inputs.component }} make apply
