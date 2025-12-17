@@ -1,10 +1,7 @@
 module "vpc" {
-  source       = "../../modules/aws-resource/vpc"
-  vpc_cidr     = var.vpc_cidr
-  subnet_count = var.subnet_count
-  subnet_cidr  = var.subnet_cidr
-  vpc_name     = var.vpc_name
-  owner        = var.owner
-  #  subnet_name  = var.subnet_name
-  tiers = local.tiers
+  source   = "../../modules/aws-resource/vpc-testing"
+  vpc_cidr = var.vpc_cidr
+  vpc_name = var.vpc_name
+  tiers    = local.tiers
+  owner    = var.owner
 }

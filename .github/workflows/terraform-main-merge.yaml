@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: ["test-vpc"]
+        component: ["vpc"]
     steps:
       - uses: actions/checkout@v3
       - name: Run make init

@@ -1,13 +1,16 @@
 variable "subnet_cidr" {
-  type = list(string)
+  type    = list(string)
+  default = ["value"]
 }
 
 variable "vpc_name" {
-  type = string
+  type    = string
+  default = "value"
 }
 
 variable "vpc_id" {
-  type = string
+  type    = string
+  default = "value"
 }
 
 variable "subnet_count" {
@@ -25,8 +28,12 @@ variable "tiers" {
   type = object({
     subnet_cidrs = list(string)
   })
+  default = {
+    subnet_cidrs = [""]
+  }
 }
 
 variable "subnet_name" {
-  type = string
+  type    = string
+  default = "value"
 }

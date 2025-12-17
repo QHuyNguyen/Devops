@@ -1,10 +1,10 @@
 locals {
   tiers = {
     "public_subnet" = {
-      subnet_cidrs = var.public_cidr_blocks
-    },
-    "private_subnet" = {
-      subnet_cidrs = var.private_cidr_blocks
+      subnet_cidrs = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
     }
   }
+  #    public_subnet = {
+  #      subnet_cidrs = ["10.0.0.0/24", "10.0.1.0/24", "10.0.2.0/24"]
+  #    }
 }
