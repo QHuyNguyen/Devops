@@ -53,4 +53,4 @@ jobs:
       - name: Run ansible make apply
         id: destroy
         run: |      
-          ACCOUNT_GROUP=${{ inputs.account_group }} ACCOUNT_DOMAIN=${{ inputs.account_domain }} COMPONENT=${{ inputs.component }} make apply
+          ACCOUNT_GROUP=${{ inputs.account_group }} ACCOUNT_DOMAIN=${{ inputs.account_domain }} COMPONENT=${{ inputs.component }} make destroy
