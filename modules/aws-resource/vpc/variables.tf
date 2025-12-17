@@ -2,10 +2,6 @@ variable "vpc_cidr" {
   type = string
 }
 
-variable "subnet_cidr" {
-  type = list(string)
-}
-
 variable "vpc_name" {
   type = string
 }
@@ -14,23 +10,20 @@ variable "owner" {
   type = string
 }
 
-variable "subnet_count" {
-  type    = number
-  default = 1
-}
-
-#variable "subnet_name" {
-#  type = list(string)
-#}
-
-variable "availability_zone_suffixes" {
-  type        = list(string)
-  description = "List of availablity zone suffix"
-  default     = ["a", "b", "c"]
-}
-
 variable "tiers" {
-  type = map(object({
-    subnet_cidrs = list(string)
-  }))
+  description = "Object type map means the values are of type object"
+#  tiers = {
+#    public_subnet = {
+#      cidr_block = 10.0.0.0/16
+#    }
+#  }
+#Key will be public_subnet and Value will be cidr_block = 10.0.0.0/16 (type object)
+  type = map(object(
+    {
+      subnet_cidrs = list(string)
+    }
+  ))
+  #default = {
+  #    subnet_cidrs = [""]
+  #}
 }

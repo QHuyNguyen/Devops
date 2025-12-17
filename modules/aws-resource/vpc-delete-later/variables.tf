@@ -1,22 +1,27 @@
+variable "vpc_cidr" {
+  type = string
+}
+
 variable "subnet_cidr" {
-  type    = list(string)
-  default = ["value"]
+  type = list(string)
 }
 
 variable "vpc_name" {
-  type    = string
-  default = "value"
+  type = string
 }
 
-variable "vpc_id" {
-  type    = string
-  default = "value"
+variable "owner" {
+  type = string
 }
 
 variable "subnet_count" {
   type    = number
   default = 1
 }
+
+#variable "subnet_name" {
+#  type = list(string)
+#}
 
 variable "availability_zone_suffixes" {
   type        = list(string)
@@ -25,15 +30,7 @@ variable "availability_zone_suffixes" {
 }
 
 variable "tiers" {
-  type = object({
+  type = map(object({
     subnet_cidrs = list(string)
-  })
-  default = {
-    subnet_cidrs = [""]
-  }
-}
-
-variable "subnet_name" {
-  type    = string
-  default = "value"
+  }))
 }

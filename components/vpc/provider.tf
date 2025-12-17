@@ -9,7 +9,7 @@ terraform {
   backend "s3" {
     bucket = "arthur-mantel-ap-southeast-2-bucket"
     #    key    = "test-vpc/instance-terraform.tfstate"
-    key    = "vpc/instance-terraform.tfstate"
+    key    = "infrastructure/vpc/instance-terraform.tfstate"
     region = "ap-southeast-2"
   }
 }

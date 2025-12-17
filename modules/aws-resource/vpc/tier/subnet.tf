@@ -1,7 +1,8 @@
 resource "aws_subnet" "this" {
-  count             = length(var.availability_zone_suffixes)
-  vpc_id            = var.vpc_id
-  cidr_block        = var.tiers.subnet_cidrs[count.index]
+  count      = length(var.availability_zone_suffixes)
+  vpc_id     = var.vpc_id
+  cidr_block = var.tiers.subnet_cidrs[count.index]
+  #cidr_block = var.subnet_cidr[count.index]
   availability_zone = "ap-southeast-2${var.availability_zone_suffixes[count.index]}"
 
   tags = {

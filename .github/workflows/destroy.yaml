@@ -2,8 +2,7 @@
 
 name: Arthur AWS Kubernetes Destroy
 
-run-name: Run Terraform destroy on k8s resources
-
+run-name: Run Terraform destroy on AWS resources
 
 # Controls when the workflow will run
 on:
