@@ -9,19 +9,19 @@ run-name: Run Terraform destroy on k8s resources
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  inputs:
-      account_group:
-        description: "Account group (e.g. infrastructure)"
-        required: true
-        type: string
-      account_domain:
-        description: "Account domain (e.g. identity)"
-        required: true
-        type: string
-      component:
-        description: "Component name (e.g. session-manager)"
-        required: true
-        type: string
+    inputs:
+        account_group:
+          description: "Account group (e.g. infrastructure)"
+          required: true
+          type: string
+        account_domain:
+          description: "Account domain (e.g. identity)"
+          required: true
+          type: string
+        component:
+          description: "Component name (e.g. session-manager)"
+          required: true
+          type: string
 
 env:
   AWS_EC2_METADATA_DISABLED: true
