@@ -48,7 +48,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run make init
         run: |
-          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=session-manager make init
+          ACCOUNT_GROUP=${{ inputs.account_group }} ACCOUNT_DOMAIN=${{ inputs.account_domain }} COMPONENT=${{ inputs.component }} make init
       - name: Run ansible make destroy
         id: destroy
         run: |      
