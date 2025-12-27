@@ -69,15 +69,18 @@ jobs:
 
   generate-identity-ssm-plan:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: ["session-manager"]
     steps:
       - uses: actions/checkout@v3
       - name: Run identity make init
         run: |
-          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=session-manager make init
+          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=${{ matrix.component }} make init
       - name: Run identity make plan
         id: plan
         run: |
-          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=session-manager make plan >> out.plan
+          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=${{ matrix.component }} make plan >> out.plan
           echo 'plan<<AOE' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
@@ -98,72 +101,72 @@ jobs:
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |      
-          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=session-manager make apply
+          ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=${{ matrix.component }} make apply
   
-  generate-workload-ansible-plan:
-    runs-on: ubuntu-latest
-    needs: generate-identity-ssm-plan
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run ansible make init
-        run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make init
-      - name: Run ansible make plan
-        id: plan
-        run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make plan >> out.plan
-          echo 'plan<<AOE' >> $GITHUB_OUTPUT
-          echo ":orange_circle:" >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          cat out.plan >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          echo 'AOE' >> $GITHUB_OUTPUT
-      - name: Display plan output
-        run: |
-          echo "${{ steps.plan.outputs.plan }}"
-      - name: Comment PR
-        if: github.event_name == 'pull_request'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ${{ steps.plan.outputs.plan }}
-          GITHUB_TOKEN:  ${{ secrets.github_token }}
-      - name: Run ansible make apply
-        id: apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |      
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make apply
-
-  generate-master-node-plan:
-    runs-on: ubuntu-latest
-    needs: generate-identity-ssm-plan
-    steps:
-      - uses: actions/checkout@v3
-      - name: Run master node make init
-        run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make init
-      - name: Run ansible make plan
-        id: plan
-        run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make plan >> out.plan
-          echo 'plan<<AOE' >> $GITHUB_OUTPUT
-          echo ":orange_circle:" >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          cat out.plan >> $GITHUB_OUTPUT
-          echo "\`\`\`" >> $GITHUB_OUTPUT
-          echo 'AOE' >> $GITHUB_OUTPUT
-      - name: Display plan output
-        run: |
-          echo "${{ steps.plan.outputs.plan }}"
-      - name: Comment PR
-        if: github.event_name == 'pull_request'
-        uses: thollander/actions-comment-pull-request@v2
-        with:
-          message: |
-            ${{ steps.plan.outputs.plan }}
-          GITHUB_TOKEN:  ${{ secrets.github_token }}
-      - name: Run master node make apply
-        id: apply
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |      
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make apply
+#  generate-workload-ansible-plan:
+#    runs-on: ubuntu-latest
+#    needs: generate-identity-ssm-plan
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Run ansible make init
+#        run: |
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make init
+#      - name: Run ansible make plan
+#        id: plan
+#        run: |
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make plan >> out.plan
+#          echo 'plan<<AOE' >> $GITHUB_OUTPUT
+#          echo ":orange_circle:" >> $GITHUB_OUTPUT
+#          echo "\`\`\`" >> $GITHUB_OUTPUT
+#          cat out.plan >> $GITHUB_OUTPUT
+#          echo "\`\`\`" >> $GITHUB_OUTPUT
+#          echo 'AOE' >> $GITHUB_OUTPUT
+#      - name: Display plan output
+#        run: |
+#          echo "${{ steps.plan.outputs.plan }}"
+#      - name: Comment PR
+#        if: github.event_name == 'pull_request'
+#        uses: thollander/actions-comment-pull-request@v2
+#        with:
+#          message: |
+#            ${{ steps.plan.outputs.plan }}
+#          GITHUB_TOKEN:  ${{ secrets.github_token }}
+#      - name: Run ansible make apply
+#        id: apply
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: |      
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make apply
+#
+#  generate-master-node-plan:
+#    runs-on: ubuntu-latest
+#    needs: generate-identity-ssm-plan
+#    steps:
+#      - uses: actions/checkout@v3
+#      - name: Run master node make init
+#        run: |
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make init
+#      - name: Run ansible make plan
+#        id: plan
+#        run: |
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make plan >> out.plan
+#          echo 'plan<<AOE' >> $GITHUB_OUTPUT
+#          echo ":orange_circle:" >> $GITHUB_OUTPUT
+#          echo "\`\`\`" >> $GITHUB_OUTPUT
+#          cat out.plan >> $GITHUB_OUTPUT
+#          echo "\`\`\`" >> $GITHUB_OUTPUT
+#          echo 'AOE' >> $GITHUB_OUTPUT
+#      - name: Display plan output
+#        run: |
+#          echo "${{ steps.plan.outputs.plan }}"
+#      - name: Comment PR
+#        if: github.event_name == 'pull_request'
+#        uses: thollander/actions-comment-pull-request@v2
+#        with:
+#          message: |
+#            ${{ steps.plan.outputs.plan }}
+#          GITHUB_TOKEN:  ${{ secrets.github_token }}
+#      - name: Run master node make apply
+#        id: apply
+#        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+#        run: |      
+#          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make apply

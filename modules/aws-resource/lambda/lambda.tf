@@ -74,8 +74,8 @@ resource "aws_lambda_function" "process_pdf" {
   # lambda_function.py
   # pinecone_db.py
   # any dependencies bundled
-  filename         = "${path.module}/lambda_src/build/lambda.zip"
-  source_code_hash = filebase64sha256("${path.module}/lambda_src/build/lambda.zip")
+  filename         = "${path.module}/data_loader/build/lambda.zip"
+  source_code_hash = filebase64sha256("${path.module}/data_loader/build/lambda.zip")
 
   timeout = 120
   memory_size = 1024
