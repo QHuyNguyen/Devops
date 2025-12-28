@@ -71,7 +71,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        component: ["session-manager"]
+        component: ["session-manager", "keypair"]
     steps:
       - uses: actions/checkout@v3
       - name: Run identity make init

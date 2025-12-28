@@ -43,3 +43,7 @@ variable "script_path" {
 variable "instance_profile_name" {
   type = string
 }
+
+variable "aws_key_pair" {
+  type = string
+}
