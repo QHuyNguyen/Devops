@@ -19,7 +19,7 @@ resource "aws_instance" "this" {
   ami           = data.aws_ami.ubuntu.id
   instance_type = var.instance_type
   iam_instance_profile = aws_iam_instance_profile.test_profile.name
-  key_name = aws_key_pair.this.key_name
+  key_name = var.aws_key_pair
 
   network_interface {
     network_interface_id = aws_network_interface.this[count.index].id

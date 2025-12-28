@@ -11,3 +11,7 @@ data "aws_security_group" "selected" {
     values = ["allow_SSH_HTTP"]
   }
 }
+
+data "aws_key_pair" "existing" {
+  key_name = "cluster-key"
+}
