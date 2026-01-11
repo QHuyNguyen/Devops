@@ -46,3 +46,8 @@ variable "script_path" {
 variable "instance_profile_name" {
   type = string
 }
+
+variable "requires_extra_storage" {
+  type = bool
+  default = false
+}

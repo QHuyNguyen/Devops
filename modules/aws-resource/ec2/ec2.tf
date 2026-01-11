@@ -32,6 +32,16 @@ resource "aws_instance" "this" {
   }
   
   user_data = var.apply_script ? file("${path.module}/${var.script_path}") : null
+  
+  dynamic "root_block_device" {
+    for_each = var.requires_extra_storage ? [1] : []
+    content {
+      volume_size = 50
+      volume_type = "gp3"
+      encrypted   = true
+      delete_on_termination = true
+    }
+  }
 }
 
 resource "aws_iam_instance_profile" "test_profile" {

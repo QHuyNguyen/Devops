@@ -47,3 +47,8 @@ variable "instance_profile_name" {
 variable "aws_key_pair" {
   type = string
 }
+
+variable "requires_extra_storage" {
+  type = bool
+  default = false
+}

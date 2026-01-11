@@ -15,3 +15,8 @@ data "aws_security_group" "selected" {
 data "aws_key_pair" "existing" {
   key_name = "cluster-key"
 }
+
+
+data "aws_iam_role" "ssm_role" {
+  name = "ssm-arthur"
+}

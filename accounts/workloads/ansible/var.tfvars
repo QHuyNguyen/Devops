@@ -9,3 +9,4 @@ role_name = "ssm-arthur"
 apply_script = true
 script_path = "userdata/ansible/script.sh"
 instance_profile_name = "test-profile-1"
+requires_extra_storage = false
