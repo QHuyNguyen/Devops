@@ -35,10 +35,10 @@ jobs:
         component: ["vpc"]
     steps:
       - uses: actions/checkout@v3
-      - name: Run make init
+      - name: Run network make init
         run: |
           ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=network COMPONENT=${{ matrix.component }} make init
-      - name: Run make plan
+      - name: Run network make plan
         id: plan
         run: |
           ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=network COMPONENT=${{ matrix.component }} make plan >> out.plan
@@ -61,7 +61,7 @@ jobs:
             ${{ steps.plan.outputs.plan }}
           GITHUB_TOKEN:  ${{ secrets.github_token }}
       
-      - name: Terraform Apply
+      - name: Run network make apply
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |      
@@ -74,7 +74,7 @@ jobs:
         component: ["session-manager", "keypair"]
     steps:
       - uses: actions/checkout@v3
-      - name: Run identity make init
+      - name: Run zd make init
         run: |
           ACCOUNT_GROUP=infrastructure ACCOUNT_DOMAIN=identity COMPONENT=${{ matrix.component }} make init
       - name: Run identity make plan
@@ -137,18 +137,18 @@ jobs:
         run: |      
           ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=ansible COMPONENT=ansible make apply
 
-  generate-master-node-plan:
+  generate-k8s-cluster-plan:
     runs-on: ubuntu-latest
     needs: generate-identity-ssm-plan
     steps:
       - uses: actions/checkout@v3
-      - name: Run master node make init
+      - name: Run cluster make init
         run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make init
-      - name: Run ansible make plan
+          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=cluster make init
+      - name: Run cluster make plan
         id: plan
         run: |
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make plan >> out.plan
+          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=cluster make plan >> out.plan
           echo 'plan<<AOE' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
@@ -165,8 +165,8 @@ jobs:
           message: |
             ${{ steps.plan.outputs.plan }}
           GITHUB_TOKEN:  ${{ secrets.github_token }}
-      - name: Run master node make apply
+      - name: Run cluster make apply
         id: apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: |      
-          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=test-k8s make apply
+          ACCOUNT_GROUP=workloads ACCOUNT_DOMAIN=k8s COMPONENT=cluster make apply
