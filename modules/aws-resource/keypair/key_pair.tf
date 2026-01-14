@@ -1,6 +1,6 @@
-resource "tls_private_key" "ed25519-key" {
-  algorithm = "ED25519"
-}
+#resource "tls_private_key" "ed25519-key" {
+#  algorithm = "ED25519"
+#}
 
 resource "aws_key_pair" "this" {
   key_name   = "cluster-key"
@@ -12,7 +12,7 @@ resource "aws_key_pair" "this" {
   #}
 }
 
-resource "local_sensitive_file" "this" {
-  content  = tls_private_key.ed25519-key.private_key_openssh
-  filename = "${path.module}/sshkey-${aws_key_pair.this.key_name}"
-}
+#resource "local_sensitive_file" "this" {
+#  content  = tls_private_key.ed25519-key.private_key_openssh
+#  filename = "${path.module}/sshkey-${aws_key_pair.this.key_name}"
+#}
