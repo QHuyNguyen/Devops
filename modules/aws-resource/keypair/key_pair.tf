@@ -3,7 +3,7 @@
 #}
 
 resource "aws_key_pair" "this" {
-  key_name   = "cluster-key"
+  key_name   = var.keypair_name
   #public_key = trimspace(tls_private_key.ed25519-key.public_key_openssh)
   public_key = file("${path.module}/id_ed25519_qhuynguyen.pub")
   
