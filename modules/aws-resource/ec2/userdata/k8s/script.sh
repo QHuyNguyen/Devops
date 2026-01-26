@@ -96,6 +96,10 @@ sudo sysctl --system
 #helm repo add aws-ebs-csi-driver https://kubernetes-sigs.github.io/aws-ebs-csi-driver
 
 #deploy the driver
-#helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver
+#helm install aws-ebs-csi-driver aws-ebs-csi-driver/aws-ebs-csi-driver \
+#    --namespace kube-system \
+#    --set enableVolumeScheduling=true \
+#    --set enableVolumeResizing=true \
+#    --set enableVolumeSnapshot=true
 
 #sudo aws s3 cp s3://arthur-mantel-ap-southeast-2-bucket/k8s-template/k8s_templates-master.zip $HOME
