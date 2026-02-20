@@ -1,0 +1,12 @@
+instance_type = "t3.medium"
+instance_name = ["arthur-test-master-node-new", "arthur-test-worker-node-01-new", "arthur-test-worker-node-02-new"]
+owner = "arthur"
+#public_subnet_id = "subnet-06ea1f2042ed50645"
+#k8s_sg = "sg-0b9ffaf8d1e2afe89"
+instance_count = 3
+private_ips = ["10.0.0.21", "10.0.0.22", "10.0.0.23"]
+role_name = "ssm-arthur"
+apply_script = true
+script_path = "userdata/ansible/script.sh"
+instance_profile_name = "test-profile-2"
+requires_extra_storage = true
