@@ -22,7 +22,7 @@ data "aws_iam_role" "ssm_role" {
 }
 
 data "terraform_remote_state" "key_pair" {
-  backend = "remote"
+  backend = "s3"
   config = {
     bucket = "devops-blog-arthur-200"
     key    = "keypair/instance-terraform.tfstate"
@@ -31,7 +31,7 @@ data "terraform_remote_state" "key_pair" {
 }
 
 data "terraform_remote_state" "role" {
-  backend = "remote"
+  backend = "s3"
   config = {
     bucket = "devops-blog-arthur-200"
     key    = "session-manager/instance-terraform.tfstate"
