@@ -24,7 +24,7 @@ data "terraform_remote_state" "key_pair" {
   backend = "s3"
   config = {
     bucket = "devops-blog-arthur-200"
-    key    = "keypair/instance-terraform.tfstate"
+    key    = "infrastructure/keypair/instance-terraform.tfstate"
     region = "ap-southeast-2"
   }
 }
@@ -33,7 +33,7 @@ data "terraform_remote_state" "role" {
   backend = "s3"
   config = {
     bucket = "devops-blog-arthur-200"
-    key    = "session-manager/instance-terraform.tfstate"
+    key    = "infrastructure/session-manager/instance-terraform.tfstate"
     region = "ap-southeast-2"
   }
 }
