@@ -13,10 +13,12 @@ module "ansible" {
   k8s_sg = data.aws_security_group.selected.id
   instance_count = var.instance_count
   private_ips = var.private_ips
-  ssm_role_name = data.aws_iam_role.ssm_role.name
+  #ssm_role_name = data.aws_iam_role.ssm_role.name
+  ssm_role_name = module.identity.ssm_role
   apply_script = var.apply_script
   script_path = var.script_path
   instance_profile_name = var.instance_profile_name
-  aws_key_pair = data.aws_key_pair.existing.key_name
+  #aws_key_pair = data.aws_key_pair.existing.key_name
+  aws_key_pair = module.keypair.aws_key_pair
   requires_extra_storage = var.requires_extra_storage
 }
