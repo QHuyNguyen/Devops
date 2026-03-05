@@ -19,3 +19,21 @@ data "aws_key_pair" "existing" {
 data "aws_iam_role" "ssm_role" {
   name = "ssm-arthur"
 }
+
+data "terraform_remote_state" "key_pair" {
+  backend = "remote"
+  config = {
+    bucket = "devops-blog-arthur-200"
+    key    = "keypair/instance-terraform.tfstate"
+    region = "ap-southeast-2"
+  }
+}
+
+data "terraform_remote_state" "role" {
+  backend = "remote"
+  config = {
+    bucket = "devops-blog-arthur-200"
+    key    = "session-manager/instance-terraform.tfstate"
+    region = "ap-southeast-2"
+  }
+}
