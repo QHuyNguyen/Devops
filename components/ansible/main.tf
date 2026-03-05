@@ -19,6 +19,6 @@ module "ansible" {
   script_path = var.script_path
   instance_profile_name = var.instance_profile_name
   #aws_key_pair = data.aws_key_pair.existing.key_name
-  aws_key_pair = data.terraform_remote_state.key_pair.outputs.aws_key_pair
+  aws_key_pair = data.terraform_remote_state.key_pair.outputs.ssh_key_pair
   requires_extra_storage = var.requires_extra_storage
 }
