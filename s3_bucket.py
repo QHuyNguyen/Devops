@@ -24,10 +24,10 @@ Here is a summary of the most important methods:
 import json
 import boto3
 import time
-from botocore.exceptions import ClientError
-from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth, RequestError
+#from botocore.exceptions import ClientError
+#from opensearchpy import OpenSearch, RequestsHttpConnection, AWSV4SignerAuth, RequestError
 import pprint
-from retrying import retry
+#from retrying import retry
 import random
 
 class S3BucketForBlog:
