@@ -29,6 +29,7 @@ resource "aws_instance" "this" {
   tags = {
     Name  = element(var.instance_name, count.index)
     Owner = var.owner
+    nuke = "skip"
   }
   
   user_data = var.apply_script ? file("${path.module}/${var.script_path}") : null

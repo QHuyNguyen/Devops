@@ -40,5 +40,6 @@ resource "aws_security_group" "allow_SSH_HTTP" {
 
   tags = {
     Name = "allow_SSH_HTTP"
+    nuke = "skip"
   }
 }

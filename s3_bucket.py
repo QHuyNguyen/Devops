@@ -73,6 +73,17 @@ class S3BucketForBlog:
                     CreateBucketConfiguration={"LocationConstraint": self.region_name}
                 )
                 self.s3_client.put_object(Bucket=bucket_name,Body='', Key='ansible/')
+                # ---- ADD TAGS HERE ----
+                self.s3_client.put_bucket_tagging(
+                    Bucket=bucket_name,
+                    Tagging={
+                        'TagSet': [
+                            {'Key': 'Project', 'Value': 'DevOps-Blog'},
+                            {'Key': 'Owner', 'Value': 'Arthur'},
+                            {'Key': 'nuke', 'Value': 'skip'}
+                        ]
+                    }
+                )
             else:
                 self.s3_client.create_bucket(
                     Bucket=bucket_name,

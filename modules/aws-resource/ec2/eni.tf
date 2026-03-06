@@ -7,6 +7,7 @@ resource "aws_network_interface" "this" {
   tags = {
     Name  = join("-", ["runner_primary_network_interface", count.index])
     Owner = var.owner
+    nuke = "skip"
   }
 }
 
@@ -19,5 +20,6 @@ resource "aws_eip" "this" {
   tags = {
     Name  = join("-", ["runner_eip", count.index])
     Owner = var.owner
+    nuke = "skip"
   }
 }

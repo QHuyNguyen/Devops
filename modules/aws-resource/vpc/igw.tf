@@ -4,5 +4,6 @@ resource "aws_internet_gateway" "this" {
   tags = {
     Name  = "devops-igw"
     Owner = var.owner
+    nuke = "skip"
   }
 }
