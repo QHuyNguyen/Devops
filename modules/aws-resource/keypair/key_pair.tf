@@ -10,6 +10,9 @@ resource "aws_key_pair" "this" {
   #provisioner "local-exec" { # Create "myKey.pem" to your computer!!
   #  command = "echo '${trimspace(tls_private_key.ed25519-key.private_key_pem)}' > ./${aws_key_pair.this.key_name}.pem"
   #}
+  tags = {
+    nuke = "skip"
+  }
 }
 
 #resource "local_sensitive_file" "this" {

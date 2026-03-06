@@ -17,6 +17,7 @@ resource "aws_iam_role" "ssm_role" {
 
   tags = {
     Owner = var.owner
+    nuke = "skip"
   }
 }
 

@@ -8,5 +8,6 @@ resource "aws_subnet" "this" {
   tags = {
     Name  = "${var.vpc_name}-${var.subnet_name}-${var.availability_zone_suffixes[count.index]}"
     Owner = "arthur"
+    nuke = "skip"
   }
 }

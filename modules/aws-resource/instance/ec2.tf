@@ -27,6 +27,7 @@ resource "aws_instance" "public_instance" {
   tags = {
     #    Name  = element(var.instance_name, count.index)
     Owner = var.owner
+    nuke = "skip"
   }
 
   user_data = file("${path.module}/k8s-script.sh")

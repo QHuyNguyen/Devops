@@ -9,6 +9,7 @@ resource "aws_route_table" "public_rt" {
   tags = {
     Name  = "${var.vpc_name}-public-rt"
     Owner = var.owner
+    nuke = "skip"
   }
 }
 
