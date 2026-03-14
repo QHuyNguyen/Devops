@@ -1,0 +1,17 @@
+name: Dockerfile package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup docker image
+        run: ls -la ./container_images/terrafrom
