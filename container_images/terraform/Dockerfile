@@ -6,8 +6,8 @@ RUN apk add --update --upgrade --no-cache \
     git \
     openssh-client \
     tree \
-    aws-cli \
-    pip
+    aws-cli
+    
 COPY --chmod=777 ./terraform_command /work
 RUN ./terraform_command
 #COPY ./Devops /work

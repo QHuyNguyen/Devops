@@ -9,9 +9,19 @@ on:
       - main
 
 jobs:
-  build:
+  list-out:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
       - name: Setup docker image
-        run: ls -la 
+        run: ls -la ./container_images/
+  
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build docker image
+        run: |
+          docker build ./container_images/terraform/. -t test-image
+          docker image ps
+          
