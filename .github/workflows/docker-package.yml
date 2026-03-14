@@ -22,5 +22,14 @@ jobs:
       - uses: actions/checkout@v5
       - name: Build docker image
         run: |
-          docker build ./container_images/terraform/. -t test-image
+          docker build ./container_images/terraform/. -t arthur210/terraform_runner:3.0.0
           docker image ls
+  
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Push docker image
+        run: |
+          docker image ls
+          docker login --username=arthur210 -p "fa1l3ns7ar92@hm"
