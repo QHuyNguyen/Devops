@@ -23,5 +23,4 @@ jobs:
       - name: Build docker image
         run: |
           docker build ./container_images/terraform/. -t test-image
-          docker image ps
-          
+          docker image ls
