@@ -1,0 +1,35 @@
+name: Dockerfile package
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  list-out:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup docker image
+        run: ls -la ./container_images/
+  
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build docker image
+        run: |
+          docker build ./container_images/terraform/. -t arthur210/terraform_runner:3.0.0
+          docker image ls
+  
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Push docker image
+        run: |
+          docker image ls
+          docker login --username=arthur210 -p "fa1l3ns7ar92@hm"
