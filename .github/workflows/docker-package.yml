@@ -13,21 +13,26 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
+      
       - name: List out available images
-        run: ls -la ./container_images/
+        id: list
+        run: echo $(ls -la ./container_images/)
 
       - name: Login to docker hub
+        id: login
         run: |
           echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-#        uses: docker/login-action@v4
-#        with:
-#          username: ${{ secrets.DOCKERHUB_USERNAME }}
-#          password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
-      - name: Build docker image
+      - name: Build docker image for x86
         id: build
         run: |
           docker build ./container_images/terraform/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64
           docker image ls
+
+#      - name: Publish docker image for x86
+#        id: publish
+#        run: |
+#          docker push arthur210/terraform_runner:3.0.0
+#
 
   
