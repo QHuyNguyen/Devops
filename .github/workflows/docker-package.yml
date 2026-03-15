@@ -9,8 +9,10 @@ on:
       - main
 
 jobs:
-  docker-build:
+  list-available-images:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.list.outputs.image-dir }}
     steps:
       - uses: actions/checkout@v5
       
@@ -19,10 +21,18 @@ jobs:
         run: |
           images=$(ls ./container_images/)
           echo "image-dir=$images" >> "$GITHUB_OUTPUT"
+          
       - name: Display list of image directory
         run: |
           echo "${{ steps.list.outputs.image-dir }}"
 
+  docker-build:
+    runs-on: ubuntu-latest
+    needs: list-available-images
+    steps:
+      - env:
+          OUTPUT1: ${{needs.list-available-images.outputs.output1}}
+      - uses: actions/checkout@v5
       - name: Login to docker hub
         id: login
         run: |
@@ -31,7 +41,7 @@ jobs:
       - name: Build docker image for x86
         id: build
         run: |
-          docker build ./container_images/terraform/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64
+          docker build ./container_images/$OUTPUT1/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64
           docker image ls
 
 #      - name: Publish docker image for x86
