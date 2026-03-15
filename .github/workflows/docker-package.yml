@@ -32,4 +32,4 @@ jobs:
       - name: Push docker image
         run: |
           docker image ls
-          docker login --username=arthur210 -p "fa1l3ns7ar92@hm"
+          docker login --username= ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
