@@ -17,8 +17,12 @@ jobs:
       - name: List out available images
         id: list
         run: |
-          image=$(ls ./container_images/)
-          echo $image
+          images=$(ls ./container_images/)
+          echo $images[@] >> "$GITHUB_OUTPUT"
+
+      - name: Display images list
+        run: |
+          echo "${{ steps.list.outputs }}"
 
       - name: Login to docker hub
         id: login
