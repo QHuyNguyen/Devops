@@ -16,7 +16,10 @@ jobs:
       
       - name: List out available images
         id: list
-        run: echo $(ls -la ./container_images/)
+        run: |
+          echo $(ls -la ./container_images/)
+          echo $1
+          echo $2
 
       - name: Login to docker hub
         id: login
