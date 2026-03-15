@@ -41,7 +41,7 @@ jobs:
         env:
           OUTPUT1: ${{needs.list-available-images.outputs.output1}}
         run: |
-          docker build ./container_images/$OUTPUT1/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64 >> out.plan
+          docker build ./container_images/$OUTPUT1/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64 2>&1 | tee out.plan
           echo 'plan<<EOF' >> $GITHUB_OUTPUT
           echo ":orange_circle:" >> $GITHUB_OUTPUT
           echo "\`\`\`" >> $GITHUB_OUTPUT
