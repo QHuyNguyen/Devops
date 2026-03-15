@@ -41,8 +41,26 @@ jobs:
         env:
           OUTPUT1: ${{needs.list-available-images.outputs.output1}}
         run: |
-          docker build ./container_images/$OUTPUT1/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64
+          docker build ./container_images/$OUTPUT1/. -t arthur210/terraform_runner:3.0.0 --platform linux/amd64 >> out.plan
+          echo 'plan<<EOF' >> $GITHUB_OUTPUT
+          echo ":orange_circle:" >> $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          cat out.plan >>  $GITHUB_OUTPUT
+          echo "\`\`\`" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
           docker image ls
+
+      - name: Display docker build output
+        run: |
+          echo "${{ steps.build.outputs.plan }}"
+
+      - name: Comment PR
+        if: github.event_name == 'pull_request'
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            ${{ steps.build.outputs.plan }}
+          GITHUB_TOKEN:  ${{ secrets.github_token }}
 
 #      - name: Publish docker image for x86
 #        id: publish
