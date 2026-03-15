@@ -32,9 +32,9 @@ jobs:
       - name: Push docker image
         shell: bash
         env:
-          dockerhub_username: arthur210
-          dockerhub_password: fa1l3ns7ar92@hm
+          dockerhub_username: ${{ secrets.DOCKERHUB_USERNAME }}
+          dockerhub_password: ${{ secrets.DOCKERHUB_PASSWORD }}
         run: |
           docker image ls
           echo "$dockerhub_password"
-          docker login --username= "$dockerhub_username" -p "$dockerhub_password"
+          docker login --username= "$dockerhub_username" -p "$dockerhub_password" --password-stdin
