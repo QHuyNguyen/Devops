@@ -18,7 +18,7 @@ jobs:
         id: list
         run: |
           images=$(ls ./container_images/)
-          for image in images[@]; do
+          for image in $(images[@]); do
             echo $image
           done
       - name: Display images list
