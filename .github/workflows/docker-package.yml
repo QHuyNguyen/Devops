@@ -19,7 +19,7 @@ jobs:
         run: |
           images=$(ls ./container_images/)
           for image in "${images[@]}"; do
-            echo $image
+            echo docker-images=$image >> "GITHUB_OUTPUT"
           done
       - name: Display images list
         run: |
