@@ -29,7 +29,7 @@ jobs:
           make sts
   
   generate-network-run-plan:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, Linux]
     strategy:
       matrix:
         component: ["vpc"]
